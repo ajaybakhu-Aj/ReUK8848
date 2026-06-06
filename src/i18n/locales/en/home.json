@@ -21,10 +21,10 @@
     "imageAlt": "Nepalese roots section",
     "title1": "NEPALESE ROOTS,",
     "title2": "AUSSIE INVENTION?",
-    "lead": "8848 Momo House is the invention of Hom Pyashi, Nepali and proud new Aussie.",
-    "body": "Homesick and craving his familiar comfort foods, Hom built a restaurant our Nepalese friends instantly love, and our Aussie mates have discovered as a brand new cuisine that's tickling their tastebuds.",
+    "lead": "8848 Momo House is the invention of Hom Pyashi, Nepali and sharing momo culture with the United Kingdom.",
+    "body": "Homesick and craving his familiar comfort foods, Hom built a restaurant our Nepalese friends instantly love, and our local communities have discovered as a brand new cuisine that's tickling their tastebuds.",
     "ctaMenu": "VIEW OUR MENU",
-    "href": "/menu"
+    "href": "#"
   },
   "updates": {
     "title": "Follow us for regular updates",
@@ -32,10 +32,10 @@
     "posts": [
       {
         "key": "newMenu",
-        "title": "New menu now available instore!",
-        "excerpt": "We are very pleased to announce the arrival of our brand new menu. It's momolicious.",
+        "title": "Opening updates coming soon",
+        "excerpt": "We are preparing the UK launch details. Check back soon for confirmed updates.",
         "img": "/8848-assets/post-menu.png",
-        "href": "/menu"
+        "href": "#"
       },
       {
         "key": "launchUpdate",

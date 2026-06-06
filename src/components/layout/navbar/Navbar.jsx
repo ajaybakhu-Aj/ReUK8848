@@ -54,7 +54,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-4">
               <a
-                href="https://www.facebook.com/8848MomoHouseFrankfurt"
+                href="#"
                 target="_blank"
                 rel="noreferrer"
                 className="grid h-5 w-5 place-items-center text-[#de1d3d]"

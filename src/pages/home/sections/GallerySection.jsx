@@ -5,8 +5,8 @@ import { motion, useScroll, useTransform, useSpring, useInView } from "framer-mo
 import { getFeaturedGalleryImage, useGalleryImages } from "@/lib/cms";
 
 // ─── Asset path ────────────────────────────────────────────────────────────────
-// Keep your original path untouched
-const GALLERY_IMAGE = "/gallery/667210978_1365141555644199_8043924957435588798_n.jpg";
+// Keep this fallback available while the public gallery is paused.
+const GALLERY_IMAGE = "/8848-assets/home-gallery-section.png";
 
 // ─── Motion config ─────────────────────────────────────────────────────────────
 const EASE_PREMIUM = [0.16, 1, 0.3, 1];
@@ -136,8 +136,8 @@ export default function GallerySection() {
             }}
           />
       <a
-  href="/gallery/"
-  aria-label="View Photo Gallery"
+  href="#"
+  aria-label="Photo gallery coming soon"
   className="absolute inset-0 z-20 block rounded-none group sm:rounded-2xl lg:rounded-3xl"
   onMouseEnter={() => setHovered(true)}
   onMouseLeave={() => setHovered(false)}
@@ -158,7 +158,7 @@ export default function GallerySection() {
       hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
     ].join(" ")}
   >
-    View Gallery
+    Gallery Coming Soon
 
     <svg
       width="14"

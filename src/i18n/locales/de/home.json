@@ -1,6 +1,6 @@
 {
   "hero": {
-    "kicker": "NEPALESISCHES RESTAURANT | DEUTSCHLAND",
+    "kicker": "NEPALESE RESTAURANT | UNITED KINGDOM",
     "title1": "NEPALESISCHE DUMPLINGS",
     "title2": "& ORIENTALISCHE FUSION",
     "desc": "8848 Momo House heißt sowohl Nepalesen als auch hungrige Foodies willkommen mit einer einzigartigen orientalischen Fusionskarte voller köstlicher Momos — zart, saftig und gefüllt mit authentischen und innovativen Aromen.",
@@ -34,12 +34,12 @@
         "title": "Neues Menü jetzt im Restaurant erhältlich!",
         "excerpt": "Wir freuen uns, unser brandneues Menü anzukündigen! Es ist momolicious...",
         "img": "/8848-assets/post-menu.png",
-        "href": "/menu"
+        "href": "#"
       },
       {
         "key": "expandEurope",
-        "title": "Expansion nach Europa",
-        "excerpt": "8848 Momo House bringt seine authentischen Aromen nun außerhalb Australiens. Der Geschmack Nepals ist auf dem Weg nach Europa.",
+        "title": "United Kingdom launch",
+        "excerpt": "8848 Momo House bringt seine authentischen Aromen nun außerhalb Australiens. The taste of Nepal is on its way to the United Kingdom.",
         "img": "/8848-assets/post-europe.jpg"
       },
       {

@@ -27,8 +27,8 @@ export default function App() {
           <Route path="/studio/*" element={<StudioRoutes />} />
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/about-us" element={<Layout><About /></Layout>} />
-          <Route path="/menu" element={<Layout><Menu /></Layout>} />
-          <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
+          <Route path="/menu" element={<Navigate to="/" replace />} />
+          <Route path="/gallery" element={<Navigate to="/" replace />} />
           <Route path="/franchise" element={<Layout><FranchisePage /></Layout>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

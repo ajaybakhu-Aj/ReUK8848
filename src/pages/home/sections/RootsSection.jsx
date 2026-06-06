@@ -22,7 +22,7 @@ export default function RootsSection() {
       lead: t("roots.lead"),
       body: t("roots.body"),
       ctaMenu: t("roots.ctaMenu"),
-      href: "/menu",
+      href: "#",
       image: rootsImg,
       badgeImage: "/8848-assets/Eighty-eight-Forty-Eight-Hom-Pyashi-Badge-Colour-Watermark.png",
       concreteBackground: "/8848-assets/Concrete-Background.jpg",
@@ -109,7 +109,7 @@ export default function RootsSection() {
             <div className="mt-7">
               <Button
                 className="h-11 bg-[#de1d3d] px-10 font-extrabold tracking-wide hover:bg-[#c51625]"
-                onClick={() => (window.location.href = roots.href || "/menu")}
+                onClick={() => { window.location.hash = roots.href || "#" }}
               >
                 {roots.ctaMenu}
               </Button>

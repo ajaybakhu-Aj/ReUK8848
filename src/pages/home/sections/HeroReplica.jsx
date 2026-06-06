@@ -87,7 +87,7 @@ export default function HeroReplica() {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8 lg:justify-start">
             <button
               className="h-[clamp(48px,6vw,53px)] w-[clamp(160px,30vw,190px)] rounded-[24px] bg-[#de1d3d] px-8 text-sm font-bold uppercase tracking-wide text-white transition duration-300 ease-out hover:-translate-y-1 hover:bg-[#c51625]"
-              onClick={() => setMenuOpen(true)}
+              onClick={() => { window.location.hash = "#" }}
             >
               {hero.ctaMenu}
             </button>

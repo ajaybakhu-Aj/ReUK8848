@@ -8,11 +8,11 @@
   "privacy": "Datenschutz",
   "terms": "Bedingungen",
   "footerLocation": {
-    "city": "Frankfurt, Deutschland",
-    "address": "Ludwigstraße 10, 60327 Frankfurt am Main, Deutschland",
+    "city": "United Kingdom",
+    "address": "123 Example Street, Your City, AB1 2CD",
     "phoneLabel": "Telefon:",
-    "phoneRaw": "+496976029152",
-    "phoneDisplay": "+49 6976029152",
+    "phoneRaw": "0000000000",
+    "phoneDisplay": "0000 000 000",
     "hoursLabel": "Öffnungszeiten:",
     "hoursValue": "Freitag 11:30–22:00\nSamstag 12:30–22:00\nSonntag 12:30–22:00\nMontag 11:30–22:00\nDienstag 11:30–22:00\nMittwoch 11:30–22:00\nDonnerstag 11:30–22:00"
   }

@@ -7,11 +7,11 @@ import { CardContent, CardHeader, CardTitle, StatCard, StudioCard, StudioHero } 
 import { useDashboard } from "@/studio/hooks/useStudioQueries"
 import { useAuthStore } from "@/studio/store/authStore"
 
-const FRANKFURT_TIME_ZONE = "Europe/Berlin"
+const UK_TIME_ZONE = "Europe/London"
 
-function getFrankfurtParts(date = new Date()) {
+function getUkParts(date = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: FRANKFURT_TIME_ZONE,
+    timeZone: UK_TIME_ZONE,
     hour: "numeric",
     hour12: false,
   }).formatToParts(date)
@@ -19,9 +19,9 @@ function getFrankfurtParts(date = new Date()) {
   return { hour: hour === 24 ? 0 : hour }
 }
 
-function formatFrankfurtTime(date = new Date()) {
+function formatUkTime(date = new Date()) {
   return new Intl.DateTimeFormat("en", {
-    timeZone: FRANKFURT_TIME_ZONE,
+    timeZone: UK_TIME_ZONE,
     weekday: "short",
     month: "short",
     day: "numeric",
@@ -36,7 +36,7 @@ export default function DashboardPage() {
   const [now, setNow] = useState(() => new Date())
   const navigate = useNavigate()
   const user = useAuthStore((state) => state.user)
-  const { hour } = getFrankfurtParts(now)
+  const { hour } = getUkParts(now)
   const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening"
   const stats = data?.stats || {}
   const fallbackActivity = ["Homepage CMS ready", "Gallery content synced", "Menu document connected"]
@@ -65,7 +65,7 @@ export default function DashboardPage() {
             <StatCard icon={BookOpenText} label="Published blogs" value={stats.blogs ?? 0} tone="blue" />
             <StatCard icon={CalendarCheck} label="Reservations" value={stats.reservations ?? 0} />
             <StatCard icon={GalleryHorizontalEnd} label="Gallery images" value={stats.galleryImages ?? 0} tone="blue" />
-            <StatCard icon={Clock3} label="Frankfurt time" value={formatFrankfurtTime(now)} />
+            <StatCard icon={Clock3} label="UK time" value={formatUkTime(now)} />
           </>
         )}
       </div>

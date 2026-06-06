@@ -33,8 +33,8 @@ export const DEFAULT_MENU_PAGES = [
 
 export const DEFAULT_NAV_ITEMS = [
   { key: "home", label: "Home", url: "/", order: 10, is_active: true, open_in_new_tab: false },
-  { key: "menu", label: "Menu", url: "/menu/", order: 20, is_active: true, open_in_new_tab: false },
-  { key: "gallery", label: "Gallery", url: "/gallery/", order: 30, is_active: true, open_in_new_tab: false },
+  { key: "menu", label: "Menu", url: "#", order: 20, is_active: false, open_in_new_tab: false },
+  { key: "gallery", label: "Gallery", url: "#", order: 30, is_active: false, open_in_new_tab: false },
   { key: "events", label: "Events", url: "#", order: 40, is_active: true, open_in_new_tab: false },
   { key: "rewards", label: "Rewards", url: "#", order: 50, is_active: true, open_in_new_tab: false },
   { key: "stuff", label: "Stuff", url: "#", order: 60, is_active: true, open_in_new_tab: false },
@@ -49,14 +49,14 @@ export const DEFAULT_SITE_SETTINGS = {
   phone: "0000000000",
   phone_display: "0000 000 000",
   email: "info@example.com",
-  city: "Your City",
-  address: "123 Example Street, Your City",
+  city: "United Kingdom",
+  address: "123 Example Street, Your City, AB1 2CD",
   opening_hours:
     "Friday 11:30 AM-10 PM\nSaturday 12:30-10 PM\nSunday 12:30-10 PM\nMonday 11:30 AM-10 PM\nTuesday 11:30 AM-10 PM\nWednesday 11:30 AM-10 PM\nThursday 11:30 AM-10 PM",
-  facebook_url: "https://www.facebook.com/8848MomoHouseFrankfurt",
+  facebook_url: "#",
   instagram_url: "https://www.instagram.com/8848momohouse/",
   youtube_url: "https://www.youtube.com/@momohouse-js7gp",
-  order_url: "https://app.ordering.sumup.com/8848-momo-house/fra/menu",
+  order_url: "#",
   privacy_url: "#",
   terms_url: "#",
   footer_text:
