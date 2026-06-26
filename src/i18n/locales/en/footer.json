@@ -9,10 +9,10 @@
   "terms": "Terms",
   "footerLocation": {
     "city": "United Kingdom",
-    "address": "123 Example Street, Your City, AB1 2CD",
+    "address": "",
     "phoneLabel": "Phone:",
-    "phoneRaw": "0000000000",
-    "phoneDisplay": "0000 000 000",
+    "phoneRaw": "+447908944999",
+    "phoneDisplay": "+44 7908 944999",
     "hoursLabel": "Opening hours:",
     "hoursValue": "Friday 11:30 AM-10 PM\nSaturday 12:30-10 PM\nSunday 12:30-10 PM\nMonday 11:30 AM-10 PM\nTuesday 11:30 AM-10 PM\nWednesday 11:30 AM-10 PM\nThursday 11:30 AM-10 PM"
   }

@@ -71,13 +71,13 @@ export default function MomosteSection() {
       />
 
       <div className="relative z-10 max-w-6xl px-4 mx-auto py-14 sm:px-6 md:py-20">
-        <div className="grid items-center gap-6 md:grid-cols-[minmax(300px,500px)_1fr] md:gap-8">
+        <div className="grid items-center gap-6 lg:grid-cols-[minmax(300px,480px)_1fr] lg:gap-10">
           {/* Plate */}
-          <div className="relative flex items-center justify-center order-1 md:order-none">
+          <div className="relative flex items-center justify-center order-1 lg:order-none">
             <img
               src={momoste.image || fallback.image}
               alt={momoste.plateAlt || fallback.plateAlt}
-              className="relative w-[clamp(380px,90vw,860px)] drop-shadow-[0_25px_45px_rgba(0,0,0,0.30)] md:w-[clamp(520px,46vw,980px)]"
+              className="relative w-[clamp(280px,75vw,460px)] drop-shadow-[0_25px_45px_rgba(0,0,0,0.30)] lg:w-[clamp(400px,38vw,520px)]"
               loading="lazy"
               style={{
                 transform: `rotate(${deg}deg)`,
@@ -88,8 +88,8 @@ export default function MomosteSection() {
           </div>
 
           {/* Copy (UNCHANGED, your text will show) */}
-          <div className="order-2 text-center md:order-none md:text-left">
-            <div className="flex flex-col items-center gap-2 md:flex-row md:items-end md:gap-4">
+          <div className="order-2 text-center lg:order-none lg:text-left">
+            <div className="flex flex-col items-center gap-2 lg:flex-row lg:items-end lg:gap-4">
               <h2 className="au-display-font text-[clamp(3.4375rem,8vw,4.375rem)] uppercase leading-none text-[#21408e]">
                 <span className="au-momoste-title">
                   {momoste.title || fallback.title}
@@ -100,12 +100,12 @@ export default function MomosteSection() {
               <img
                 src={goodTimesImg}
                 alt={momoste.subtitle || fallback.subtitle}
-                className="h-auto w-[min(60vw,190px)] md:w-[clamp(260px,22vw,390px)]"
+                className="h-auto w-[min(60vw,190px)] lg:w-[clamp(220px,18vw,340px)]"
                 loading="lazy"
               />
             </div>
 
-            <p className="mx-auto mt-6 max-w-xl text-[18px] font-normal leading-[1.7] text-[#26367c] md:mx-0">
+            <p className="mx-auto mt-6 max-w-xl text-[18px] font-normal leading-[1.7] text-[#26367c] lg:mx-0">
               {momoste.body || fallback.body}
             </p>
 
@@ -120,7 +120,7 @@ export default function MomosteSection() {
               </div>
             </div>
 
-            <p className="mx-auto mt-6 max-w-xl text-sm font-semibold leading-7 text-[#21408e]/70 md:mx-0">
+            <p className="mx-auto mt-6 max-w-xl text-sm font-semibold leading-7 text-[#21408e]/70 lg:mx-0">
               <span className="font-black text-[#21408e]">
                 {momoste.noteEmph || fallback.noteEmph}
               </span>{" "}

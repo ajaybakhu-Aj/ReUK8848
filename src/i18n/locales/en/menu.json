@@ -1,7 +1,31 @@
 {
   "hero": {
-    "kicker": "8848 MOMO HOUSE · GERMANY",
-    "title": "Dining & Takeaway Menu",
-    "subtitle": "A premium editorial experience blending Nepalese warmth with modern luxury. Scroll to explore our full menu in immersive detail."
-  }
+    "kicker": "NEPALESE DUMPLINGS & ORIENTAL FUSION",
+    "title": "Our Menu",
+    "subtitle": "Soft, pillowy, golden, crispy, spicy & saucy. From the heart and soul of Nepalese street food to your plate."
+  },
+  "categories": {
+    "all": "All",
+    "momo": "Momo",
+    "signature": "Signature & Fusion",
+    "street": "Street Food",
+    "noodles": "Noodles & Rice",
+    "kids": "Kids Menu",
+    "desserts": "Desserts",
+    "sides": "Sides",
+    "sauces": "House Sauces"
+  },
+  "badges": {
+    "popular": "Popular",
+    "spicy": "Spicy",
+    "veg": "Veg Available",
+    "gf": "Gluten Free",
+    "new": "New"
+  },
+  "cta": {
+    "orderNow": "Order Now",
+    "viewFull": "View Full Menu PDF"
+  },
+  "allergyNote": "Please alert your server if you have any allergies. Our food may contain or come into contact with wheat, eggs, peanuts, tree nuts, milk, and other allergens.",
+  "imageNote": "Food photos are for illustration only and may differ slightly from actual dishes served."
 }

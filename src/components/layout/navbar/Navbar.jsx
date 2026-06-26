@@ -3,16 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useSiteSettings } from "@/lib/cms";
 import logo from "@/assets/8848logo.jpeg";
 
 const NAVY = "text-[#21408e]";
 const RED = "text-[#de1d3d]";
-const DUMMY_PHONE = "0000 000 000";
-const DUMMY_PHONE_HREF = "tel:0000000000";
 
 const navItems = [
   { key: "home", href: "/" },
-  // { key: "menu", href: "/menu/" },
+  { key: "menu", href: "/menu/" },
   // { key: "gallery", href: "/gallery/" },
   // { key: "events", href: "#" },
   // { key: "rewards", href: "#" },
@@ -27,6 +26,9 @@ const rightNavItems = navItems.slice(5);
 
 export default function Navbar() {
   const { t } = useTranslation("navbar");
+  const settings = useSiteSettings();
+  const phoneDisplay = settings.phone_display || settings.phone || "+44 7908 944999";
+  const phoneHref = `tel:${settings.phone || "+447908944999"}`;
   const pathname = window.location.pathname.replace(/\/$/, "") || "/";
 
   const isActive = (item) =>
@@ -45,16 +47,16 @@ export default function Navbar() {
           <div className="hidden items-center gap-5 lg:flex">
             <div className="flex items-center gap-2">
               <a
-                href={DUMMY_PHONE_HREF}
+                href={phoneHref}
                 className={`${NAVY} au-nav-font text-[1.14rem] uppercase hover:text-[#de1d3d] transition-colors`}
               >
-                {DUMMY_PHONE}
+                {phoneDisplay}
               </a>
             </div>
 
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href={settings.facebook_url || "#"}
                 target="_blank"
                 rel="noreferrer"
                 className="grid h-5 w-5 place-items-center text-[#de1d3d]"
@@ -64,7 +66,7 @@ export default function Navbar() {
                 <FaFacebookF size={14} />
               </a>
               <a
-                href="https://www.instagram.com/8848momohouse/"
+                href={settings.instagram_url || "#"}
                 target="_blank"
                 rel="noreferrer"
                 className="grid h-5 w-5 place-items-center text-[#de1d3d]"
@@ -74,7 +76,7 @@ export default function Navbar() {
                 <FaInstagram size={16} />
               </a>
               <a
-                href="https://www.youtube.com/@momohouse-js7gp"
+                href={settings.youtube_url || "#"}
                 target="_blank"
                 rel="noreferrer"
                 className="grid h-5 w-5 place-items-center text-[#de1d3d]"
@@ -100,12 +102,12 @@ export default function Navbar() {
 
           {/* Mobile: phone number centered in top row */}
           <a
-            href={DUMMY_PHONE_HREF}
+            href={phoneHref}
             className="col-start-2 flex items-center justify-center lg:hidden"
             aria-label="Call 8848 Momo House"
           >
             <span className={`${NAVY} au-nav-font text-[1.05rem] uppercase`}>
-              {DUMMY_PHONE}
+              {phoneDisplay}
             </span>
           </a>
 

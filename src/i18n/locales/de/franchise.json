@@ -251,17 +251,17 @@
     "contacts": [
       {
         "icon": "Phone",
-        "label": "0000 000 000 — ruf uns an",
-        "href": "tel:0000 000 000"
+        "label": "+44 7908 944999 — Ruf uns an",
+        "href": "tel:+447908944999"
       },
       {
         "icon": "Mail",
-        "label": "info@example.com",
-        "href": "mailto:info@example.com"
+        "label": "info@8848momo.co.uk",
+        "href": "mailto:info@8848momo.co.uk"
       },
       {
         "icon": "MapPin",
-        "label": "123 Example Street, Your City, AB1 2CD",
+        "label": "United Kingdom",
         "href": ""
       }
     ],

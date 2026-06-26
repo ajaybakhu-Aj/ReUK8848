@@ -1,7 +1,31 @@
 {
   "hero": {
-    "kicker": "8848 MOMO HOUSE · DEUTSCHLAND",
-    "title": "Menü für Dine-in & Abholung",
-    "subtitle": "Ein hochwertiges, redaktionelles Erlebnis, das nepalesische Wärme mit moderner Eleganz verbindet. Scrolle, um unser vollständiges Menü im Detail zu entdecken."
-  }
+    "kicker": "NEPALESISCHE DUMPLINGS & ORIENTAL FUSION",
+    "title": "Unsere Speisekarte",
+    "subtitle": "Weich, fluffig, golden, knusprig, scharf & würzig. Vom Herzen der nepalesischen Straßenküche direkt auf deinen Teller."
+  },
+  "categories": {
+    "all": "Alle",
+    "momo": "Momo",
+    "signature": "Signature & Fusion",
+    "street": "Straßenküche",
+    "noodles": "Nudeln & Reis",
+    "kids": "Kindermenü",
+    "desserts": "Desserts",
+    "sides": "Beilagen",
+    "sauces": "Hausoßen"
+  },
+  "badges": {
+    "popular": "Beliebt",
+    "spicy": "Scharf",
+    "veg": "Veg. verfügbar",
+    "gf": "Glutenfrei",
+    "new": "Neu"
+  },
+  "cta": {
+    "orderNow": "Jetzt bestellen",
+    "viewFull": "Vollständiges Menü-PDF ansehen"
+  },
+  "allergyNote": "Bitte informiere dein Servicepersonal über Allergien. Unsere Speisen können Weizen, Eier, Erdnüsse, Nüsse, Milch und andere Allergene enthalten.",
+  "imageNote": "Fotos dienen nur der Illustration und können leicht von den servierten Gerichten abweichen."
 }

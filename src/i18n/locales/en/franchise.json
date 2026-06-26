@@ -135,9 +135,9 @@
     "titleLine2": "8848 JOURNEY.",
     "lead": "Tell us a little about you and the city you would like to open in. Our team will be in touch within 2 working days.",
     "contacts": [
-      { "icon": "Phone", "label": "0000 000 000 - call us", "href": "tel:0000000000" },
-      { "icon": "Mail", "label": "info@example.com", "href": "mailto:info@example.com" },
-      { "icon": "MapPin", "label": "123 Example Street, Your City, AB1 2CD", "href": "" }
+      { "icon": "Phone", "label": "+44 7908 944999 — Call us", "href": "tel:+447908944999" },
+      { "icon": "Mail", "label": "info@8848momo.co.uk", "href": "mailto:info@8848momo.co.uk" },
+      { "icon": "MapPin", "label": "United Kingdom", "href": "" }
     ],
     "cardKicker": "Founding Partner",
     "cardTitle": "Reduced franchise fee",

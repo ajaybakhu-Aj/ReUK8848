@@ -2,6 +2,7 @@ import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import { Button } from "@/components/ui/button"
 import { useTranslation } from "react-i18next"
+import { MdEmail, MdPhone } from "react-icons/md"
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const EVEREST_BADGE = "/8848-assets/mount-everest-nepal-8848.png";
@@ -168,6 +169,31 @@ export default function Franchise() {
             <p className="au-copy mt-6">
               {t("body.paragraph")}
             </p>
+
+            {/* Contact Information */}
+            <div className="mt-10 rounded-xl border border-[#21408e]/10 bg-[#edf2ff] p-6">
+              <h3 className="au-kicker text-[0.78rem]">Contact Information</h3>
+              <div className="mt-4 space-y-3">
+                <a
+                  href="tel:+447908944999"
+                  className="flex items-center gap-3 text-[0.95rem] font-semibold text-[#21408e] transition-colors hover:text-[#de1d3d]"
+                >
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#21408e]/10">
+                    <MdPhone size={18} className="text-[#de1d3d]" />
+                  </span>
+                  +44 7908 944999
+                </a>
+                <a
+                  href="mailto:info@8848momo.co.uk"
+                  className="flex items-center gap-3 text-[0.95rem] font-semibold text-[#21408e] transition-colors hover:text-[#de1d3d]"
+                >
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#21408e]/10">
+                    <MdEmail size={18} className="text-[#de1d3d]" />
+                  </span>
+                  info@8848momo.co.uk
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="lg:sticky lg:top-8">
