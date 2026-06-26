@@ -4,6 +4,7 @@ import JourneySection from "@/pages/home/sections/JourneySection"
 import MomosteSection from "@/pages/home/sections/MomosteSection"
 import OurStorySection from "@/pages/home/sections/OurStorySection"
 import RootsSection from "@/pages/home/sections/RootsSection"
+import SignatureDishesSection from "@/pages/home/sections/SignatureDishesSection"
 import UpdatesSection from "@/pages/home/sections/UpdatesSection"
 import YakClubSection from "@/pages/home/sections/YakClubSection"
 
@@ -15,6 +16,7 @@ export default function Home() {
       <JourneySection />
       <RootsSection />
       <OurStorySection />
+      <SignatureDishesSection />
       <UpdatesSection />
       <InstagramSection />
       <YakClubSection />
