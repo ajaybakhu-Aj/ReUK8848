@@ -1,6 +1,4 @@
-import GallerySection from "@/pages/home/sections/GallerySection"
 import HeroReplica from "@/pages/home/sections/HeroReplica"
-import FaqAndCta from "@/pages/home/sections/FaqAndCta"
 import InstagramSection from "@/pages/home/sections/InstagramSection"
 import JourneySection from "@/pages/home/sections/JourneySection"
 import MomosteSection from "@/pages/home/sections/MomosteSection"
@@ -17,9 +15,7 @@ export default function Home() {
       <JourneySection />
       <RootsSection />
       <OurStorySection />
-      <GallerySection />
       <UpdatesSection />
-      {/* <FaqAndCta/> */}
       <InstagramSection />
       <YakClubSection />
     </div>
