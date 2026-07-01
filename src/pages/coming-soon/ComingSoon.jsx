@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { staggerParent, staggerItem } from "@/components/Reveal";
 
 export default function ComingSoon({ title = "This Page", blurb }) {
   const text =
@@ -28,32 +30,40 @@ export default function ComingSoon({ title = "This Page", blurb }) {
           }}
         />
 
-        <div className="container mx-auto max-w-[900px] px-4 relative z-10 text-center">
+        <motion.div
+          className="container mx-auto max-w-[900px] px-4 relative z-10 text-center"
+          variants={staggerParent}
+          initial="hidden"
+          animate="show"
+        >
           {/* pill badge */}
-          <span className="inline-flex items-center gap-2 rounded-full border border-nepal-red/30 bg-white px-5 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-nepal-red shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-nepal-red" />
+          <motion.span variants={staggerItem} className="inline-flex items-center gap-2 rounded-full border border-nepal-red/30 bg-white px-5 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-nepal-red shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-nepal-red animate-pulse" />
             8848 Momo House · United Kingdom
-          </span>
+          </motion.span>
 
           {/* heading */}
-          <h1 className="mt-8 font-shoem leading-[0.9] tracking-wide">
+          <motion.h1 variants={staggerItem} className="mt-8 font-shoem leading-[0.9] tracking-wide">
             <span className="block text-nepal-navy text-[56px] md:text-[104px]">{title}</span>
             <span className="block text-nepal-red font-anod text-[40px] md:text-[76px] mt-1">
               IS COMING SOON
             </span>
-          </h1>
+          </motion.h1>
 
-          <p className="font-poppins text-nepal-navy/75 text-[15px] md:text-[18px] font-medium leading-relaxed max-w-xl mx-auto mt-6">
+          <motion.p variants={staggerItem} className="font-poppins text-nepal-navy/75 text-[15px] md:text-[18px] font-medium leading-relaxed max-w-xl mx-auto mt-6">
             {text}
-          </p>
+          </motion.p>
 
-          <img
+          <motion.img
+            variants={staggerItem}
             src="/8848-assets/yak-footer.png"
             alt="Jak the Yak"
             className="w-[150px] md:w-[210px] h-auto object-contain mx-auto mt-10 drop-shadow-xl"
+            animate={{ y: [0, -12, 0], rotate: [0, 1.5, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+          <motion.div variants={staggerItem} className="flex flex-wrap items-center justify-center gap-4 mt-10">
             <Link to="/">
               <button className="bg-nepal-red text-white py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 transition-colors shadow-sm">
                 Back to Home
@@ -64,8 +74,8 @@ export default function ComingSoon({ title = "This Page", blurb }) {
                 Order Online
               </button>
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
     </div>
   );

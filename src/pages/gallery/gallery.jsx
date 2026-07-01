@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { EASE } from "@/components/Reveal";
 
 /* High-quality dish photography shipped with the project. */
 const FILES = [
@@ -64,17 +66,27 @@ export default function Gallery() {
         }}
       >
         <div className="absolute inset-0 bg-nepal-blue/60" />
-        <div className="container mx-auto max-w-[1400px] px-4 relative z-10 text-center">
+        <motion.div
+          className="container mx-auto max-w-[1400px] px-4 relative z-10 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
           <p className="font-montserrat text-[13px] md:text-[15px] uppercase tracking-[4px] text-white/80 mb-4 font-bold">
             8848 Momo House · United Kingdom
           </p>
-          <h1 className="font-shoem text-[52px] md:text-[96px] leading-none tracking-wide">
+          <motion.h1
+            className="font-shoem text-[52px] md:text-[96px] leading-none tracking-wide"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+          >
             OUR GALLERY
-          </h1>
+          </motion.h1>
           <p className="font-poppins text-sm md:text-base tracking-[3px] uppercase mt-4 font-bold text-white/90">
             A Story in Every Bite • Our Journey • Our Passion
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* ------------------------- Grid ------------------------- */}
@@ -99,11 +111,15 @@ export default function Gallery() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
             {IMAGES.map((img, i) => (
-              <button
+              <motion.button
                 key={img.id}
                 onClick={() => setActive(i)}
                 className="group relative block overflow-hidden rounded-sm aspect-square cursor-pointer focus:outline-none focus:ring-2 focus:ring-nepal-red"
                 aria-label={`Open ${img.caption}`}
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: (i % 4) * 0.07, ease: EASE }}
               >
                 <img
                   src={img.src}
@@ -121,17 +137,22 @@ export default function Gallery() {
                   </h3>
                 </div>
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-nepal-red/50 transition-colors duration-500 rounded-sm" />
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
       </section>
 
       {/* ------------------------- Lightbox ------------------------- */}
+      <AnimatePresence>
       {active !== null && (
-        <div
+        <motion.div
           className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 md:p-10"
           onClick={close}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
         >
           <button
             onClick={close}
@@ -153,7 +174,14 @@ export default function Gallery() {
             </svg>
           </button>
 
-          <figure className="max-w-[90vw] max-h-[85vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+          <motion.figure
+            key={active}
+            className="max-w-[90vw] max-h-[85vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, ease: EASE }}
+          >
             <img
               src={IMAGES[active].src}
               alt={IMAGES[active].caption}
@@ -167,7 +195,7 @@ export default function Gallery() {
                 {active + 1} / {IMAGES.length}
               </span>
             </figcaption>
-          </figure>
+          </motion.figure>
 
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
@@ -178,8 +206,9 @@ export default function Gallery() {
               <path d="M9 6l6 6-6 6" />
             </svg>
           </button>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }

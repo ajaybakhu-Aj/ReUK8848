@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { getPageSectionContent, useHomePage } from "@/lib/cms";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import Reveal, { EASE, staggerParent, staggerItem } from "@/components/Reveal";
 import ownerImg from "@/assets/owner.jpg";
 
 /* Asset paths (project's own images) */
@@ -100,30 +102,38 @@ export default function Home() {
           className="absolute inset-0 z-0 opacity-[0.05]"
           style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "400px", backgroundRepeat: "repeat" }}
         />
-        <img
+        <motion.img
           src={A.homBadge}
           alt=""
           aria-hidden="true"
           className="absolute right-[5%] top-[15%] w-[280px] h-[280px] md:w-[340px] md:h-[340px] z-[5] pointer-events-none opacity-70"
+          initial={{ opacity: 0, scale: 0.85, rotate: -12 }}
+          animate={{ opacity: 0.7, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, ease: EASE }}
         />
 
         <div className="container mx-auto max-w-[1400px] px-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start pt-6 md:pt-10">
-          <div className="w-full lg:w-[55%] flex flex-col items-start text-left">
-            <p className="font-montserrat text-[14px] md:text-[16px] text-nepal-red uppercase tracking-[0.5px] mb-4 font-bold">
+          <motion.div
+            className="w-full lg:w-[55%] flex flex-col items-start text-left"
+            variants={staggerParent}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.p variants={staggerItem} className="font-montserrat text-[14px] md:text-[16px] text-nepal-red uppercase tracking-[0.5px] mb-4 font-bold">
               {hero.kicker}
-            </p>
-            <h2 className="font-shoem text-[42px] md:text-[70px] leading-[1] text-nepal-navy mb-0">
+            </motion.p>
+            <motion.h2 variants={staggerItem} className="font-shoem text-[42px] md:text-[70px] leading-[1] text-nepal-navy mb-0">
               {hero.title1}
-            </h2>
-            <h2 className="font-anod text-[42px] md:text-[70px] leading-[1] text-nepal-red mb-6 md:mb-8">
+            </motion.h2>
+            <motion.h2 variants={staggerItem} className="font-anod text-[42px] md:text-[70px] leading-[1] text-nepal-red mb-6 md:mb-8">
               {hero.title2}
-            </h2>
-            <p className="font-poppins text-[16px] text-[#26367C] leading-[26px] max-w-[500px] mb-8">
+            </motion.h2>
+            <motion.p variants={staggerItem} className="font-poppins text-[16px] text-[#26367C] leading-[26px] max-w-[500px] mb-8">
               {hero.desc}
-            </p>
-            <div className="flex flex-wrap gap-4 mb-8">
+            </motion.p>
+            <motion.div variants={staggerItem} className="flex flex-wrap gap-4 mb-8">
               <Link to="/menu">
-                <button className="bg-nepal-red text-white py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 transition-colors shadow-sm">
+                <button className="bg-nepal-red text-white py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
                   {hero.ctaMenu}
                 </button>
               </Link>
@@ -132,18 +142,32 @@ export default function Home() {
                   {hero.ctaOrder}
                 </button>
               </a>
-            </div>
-            <img src={A.everest} alt="Mount Everest 8848m badge" className="w-[100px] h-auto mt-4 opacity-90" />
-          </div>
+            </motion.div>
+            <motion.img
+              variants={staggerItem}
+              src={A.everest}
+              alt="Mount Everest 8848m badge"
+              className="w-[100px] h-auto mt-4 opacity-90"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
 
           <div className="hidden lg:flex w-full lg:w-[45%] relative h-[400px] lg:h-[600px] mt-10 lg:mt-0 justify-end">
-            <div className="absolute right-[-20px] lg:right-[-40px] top-10 w-[80%] lg:w-[90%] max-w-[500px] z-10">
-              <img
+            <motion.div
+              className="absolute right-[-20px] lg:right-[-40px] top-10 w-[80%] lg:w-[90%] max-w-[500px] z-10"
+              initial={{ opacity: 0, x: 60, rotate: 6 }}
+              animate={{ opacity: 1, x: 0, rotate: 0 }}
+              transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
+            >
+              <motion.img
                 src={A.handMomo}
                 alt="Hand holding momo"
-                className="w-full h-auto object-contain animate-vibrate-entrance drop-shadow-2xl"
+                className="w-full h-auto object-contain drop-shadow-2xl"
+                animate={{ y: [0, -14, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -156,18 +180,28 @@ export default function Home() {
       >
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-              <div className="relative w-[300px] md:w-[400px] lg:w-[500px]">
+            <Reveal variant="right" className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+              <motion.div
+                className="relative w-[300px] md:w-[400px] lg:w-[500px]"
+                whileHover={{ rotate: 8, scale: 1.04 }}
+                transition={{ type: "spring", stiffness: 120, damping: 12 }}
+              >
                 <img
                   src={A.brassBowl}
                   alt="Delicious momos on a brass plate"
-                  className="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300"
+                  className="w-full h-auto object-contain drop-shadow-xl"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </Reveal>
 
-            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 pt-10">
-              <div className="flex flex-col items-center lg:items-start">
+            <motion.div
+              className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 pt-10"
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.div variants={staggerItem} className="flex flex-col items-center lg:items-start">
                 <div className="relative">
                   <span className="absolute -top-6 -left-2 text-nepal-red text-3xl md:text-4xl font-bold select-none">✳</span>
                   <h2 className="font-anod text-[48px] md:text-[80px] leading-none text-nepal-navy mb-2">
@@ -175,26 +209,26 @@ export default function Home() {
                   </h2>
                 </div>
                 <img src={A.goodTimes} alt={momoste.subtitle} className="h-12 md:h-16 object-contain -mt-4 opacity-90" />
-              </div>
+              </motion.div>
 
-              <div className="space-y-4 max-w-lg font-poppins text-[#5C5C5C] leading-relaxed">
+              <motion.div variants={staggerItem} className="space-y-4 max-w-lg font-poppins text-[#5C5C5C] leading-relaxed">
                 <p>{momoste.body}</p>
-              </div>
+              </motion.div>
 
-              <div className="mt-8 border-2 border-dashed border-nepal-red rounded-lg p-6 max-w-md bg-nepal-cream/30 relative">
+              <motion.div variants={staggerItem} className="mt-8 border-2 border-dashed border-nepal-red rounded-lg p-6 max-w-md bg-nepal-cream/30 relative">
                 <div className="absolute -top-3 left-6 bg-white px-2 font-bold text-nepal-red text-sm uppercase tracking-wider">
                   {momoste.whyTitle}
                 </div>
                 <p className="font-poppins text-sm text-nepal-navy italic">"{momoste.whyBody}"</p>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-3 mt-6 max-w-md">
+              <motion.div variants={staggerItem} className="flex items-start gap-3 mt-6 max-w-md">
                 <span className="text-nepal-red text-lg leading-none shrink-0 mt-0.5">✳</span>
                 <p className="font-poppins text-[13px] text-nepal-navy leading-normal">
                   <span className="font-bold text-[14px]">{momoste.noteEmph}</span> {momoste.noteRest}
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -214,28 +248,36 @@ export default function Home() {
         />
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text column */}
-          <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-[34px] md:text-[52px] font-shoem text-nepal-navy leading-[0.9]">{roots.title1}</h2>
-            <h2 className="text-[34px] md:text-[52px] font-anod text-nepal-red leading-[0.9] mt-1">{roots.title2}</h2>
-            <h2 className="text-[34px] md:text-[52px] font-anod text-nepal-navy leading-[0.9] mt-1">LOVED IN THE UK.</h2>
+          <motion.div
+            className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-shoem text-nepal-navy leading-[0.9]">{roots.title1}</motion.h2>
+            <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-anod text-nepal-red leading-[0.9] mt-1">{roots.title2}</motion.h2>
+            <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-anod text-nepal-navy leading-[0.9] mt-1">LOVED IN THE UK.</motion.h2>
 
-            <p className="mt-6 font-poppins text-nepal-navy text-[16px] md:text-[18px] font-medium leading-relaxed max-w-xl">
+            <motion.p variants={staggerItem} className="mt-6 font-poppins text-nepal-navy text-[16px] md:text-[18px] font-medium leading-relaxed max-w-xl">
               {roots.lead} {roots.body}
-            </p>
-            <Link
-              to="/menu"
-              className="mt-6 inline-flex items-center px-[28px] py-[12px] bg-nepal-red text-white font-poppins text-[14px] font-medium hover:bg-red-700 transition-colors duration-300 group"
-            >
-              {roots.ctaMenu}
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+            </motion.p>
+            <motion.div variants={staggerItem}>
+              <Link
+                to="/menu"
+                className="mt-6 inline-flex items-center px-[28px] py-[12px] bg-nepal-red text-white font-poppins text-[14px] font-medium hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 group"
+              >
+                {roots.ctaMenu}
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </motion.div>
 
           {/* Image column */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
+          <Reveal variant="left" duration={0.8} className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
             <div className="relative w-full max-w-[360px] lg:max-w-[480px] flex justify-center lg:justify-end">
               <div
-                className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0 scale-90 lg:scale-90"
+                className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0 scale-90"
                 style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
               />
               <img
@@ -244,14 +286,14 @@ export default function Home() {
                 className="relative z-10 w-full object-contain drop-shadow-xl rounded-sm"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ============================ STUFF & THINGS ============================ */}
       <section id="stuff" className="w-full py-16 px-4 md:px-12 lg:px-24 bg-white relative">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-8 pb-4 border-b border-nepal-navy/20">
+          <Reveal variant="up" className="flex flex-col md:flex-row justify-between items-end mb-8 pb-4 border-b border-nepal-navy/20">
             <div className="flex items-baseline gap-3">
               <h2 className="text-[40px] md:text-[60px] font-shoem text-nepal-navy leading-none tracking-wide">STUFF</h2>
               <span className="text-[40px] md:text-[60px] font-anod text-nepal-red/80 ml-2 transform translate-y-1">&amp; THINGS</span>
@@ -262,14 +304,23 @@ export default function Home() {
             >
               More Stuff <ArrowRight />
             </Link>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+          >
             {posts.map((post, i) => (
-              <a
+              <motion.a
                 key={post.key || i}
+                variants={staggerItem}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3, ease: EASE }}
                 href={post.href || "#"}
-                className="flex flex-col group cursor-pointer bg-white rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                className="flex flex-col group cursor-pointer bg-white rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300"
               >
                 <div className="w-full aspect-[3/2] overflow-hidden relative">
                   <img
@@ -290,16 +341,16 @@ export default function Home() {
                     {(updates.readMore || "Read more").toUpperCase()}
                   </span>
                 </div>
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ============================ GALLERY / STORY ============================ */}
       <section id="gallery" className="w-full bg-white py-12 md:py-16 px-4 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-8 pb-4 border-b border-nepal-navy/20 relative z-10">
+          <Reveal variant="up" className="flex flex-col md:flex-row justify-between items-end mb-8 pb-4 border-b border-nepal-navy/20 relative z-10">
             <div className="flex flex-col text-center md:text-left w-full md:w-auto">
               <h2 className="text-[40px] md:text-[60px] font-shoem text-nepal-navy leading-none mb-2">A STORY IN EVERY BITE</h2>
               <p className="font-poppins text-nepal-red font-bold text-sm tracking-[3px] uppercase">
@@ -312,17 +363,17 @@ export default function Home() {
             >
               View Gallery <ArrowRight />
             </Link>
-          </div>
+          </Reveal>
 
           <div className="flex flex-col gap-4 md:gap-3">
             <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[350px] w-full">
               {galleryCards.slice(0, 3).map((card, i) => (
-                <GalleryTile key={i} img={GALLERY[i]} {...card} />
+                <GalleryTile key={i} img={GALLERY[i]} index={i} {...card} />
               ))}
             </div>
             <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[300px] w-full">
               {galleryCards.slice(3, 5).map((card, i) => (
-                <GalleryTile key={i} img={GALLERY[i + 3]} {...card} />
+                <GalleryTile key={i} img={GALLERY[i + 3]} index={i} {...card} />
               ))}
             </div>
           </div>
@@ -342,15 +393,21 @@ export default function Home() {
       <section id="rewards" className="relative w-full py-8 md:py-12 overflow-hidden bg-nepal-red">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-4">
-            <div className="w-full lg:w-3/5 text-white space-y-4 text-center lg:text-left">
-              <h2 className="flex flex-wrap items-baseline justify-center lg:justify-start gap-4 text-4xl md:text-5xl lg:text-7xl leading-none">
+            <motion.div
+              className="w-full lg:w-3/5 text-white space-y-4 text-center lg:text-left"
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.h2 variants={staggerItem} className="flex flex-wrap items-baseline justify-center lg:justify-start gap-4 text-4xl md:text-5xl lg:text-7xl leading-none">
                 <span className="font-shoem">{yak.titlePrefix}</span>
                 <span className="font-anod text-[#eaeaea] tracking-wide">{yak.titleEmph}</span>
-              </h2>
-              <p className="font-poppins text-sm md:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 opacity-90">
+              </motion.h2>
+              <motion.p variants={staggerItem} className="font-poppins text-sm md:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 opacity-90">
                 {yak.body}
-              </p>
-              <div className="pt-2">
+              </motion.p>
+              <motion.div variants={staggerItem} className="pt-2">
                 <a
                   href={EXTERNAL_LINKS.order}
                   target="_blank"
@@ -363,17 +420,26 @@ export default function Home() {
                   </svg>
                   <span className="tracking-wider">{yak.cta}</span>
                 </a>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
-              <div className="relative w-[200px] md:w-[280px] lg:w-[320px]">
-                <img
+              <motion.div
+                className="relative w-[200px] md:w-[280px] lg:w-[320px]"
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.7, ease: EASE }}
+              >
+                <motion.img
                   src={A.yak}
                   alt="Jak the Yak saying Namaste"
-                  className="w-full h-auto object-contain drop-shadow-xl hover:rotate-1 transition-transform duration-500"
+                  className="w-full h-auto object-contain drop-shadow-xl"
+                  animate={{ y: [0, -12, 0], rotate: [0, 1.5, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                  whileHover={{ scale: 1.05 }}
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -382,9 +448,15 @@ export default function Home() {
   );
 }
 
-function GalleryTile({ img, tag, title, desc }) {
+function GalleryTile({ img, tag, title, desc, index = 0 }) {
   return (
-    <div className="group relative cursor-pointer overflow-hidden rounded-sm transition-all duration-700 ease-in-out w-full h-[400px] md:h-full md:w-auto md:flex-[1] md:hover:flex-[3]">
+    <motion.div
+      className="group relative cursor-pointer overflow-hidden rounded-sm transition-all duration-700 ease-in-out w-full h-[400px] md:h-full md:w-auto md:flex-[1] md:hover:flex-[3]"
+      initial={{ opacity: 0, y: 40, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
+    >
       <div className="absolute inset-0">
         <img
           src={img}
@@ -404,6 +476,6 @@ function GalleryTile({ img, tag, title, desc }) {
         </div>
       </div>
       <div className="hidden md:block absolute inset-0 border-2 border-transparent group-hover:border-nepal-red/40 transition-colors duration-500 rounded-sm" />
-    </div>
+    </motion.div>
   );
 }
