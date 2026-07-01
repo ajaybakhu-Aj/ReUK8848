@@ -304,14 +304,14 @@ export default function JourneySection() {
           {/* Navigation arrows */}
           <button
             onClick={() => scroll(-1)}
-            className={`absolute -left-4 top-[42%] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 md:grid ${!canScrollLeft ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`absolute -left-5 top-[130px] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/30 bg-[#de1d3d]/70 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-[#de1d3d] xl:grid ${!canScrollLeft ? "opacity-0 pointer-events-none" : "opacity-100"}`}
             aria-label="Scroll left"
           >
             <FaChevronLeft size={14} />
           </button>
           <button
             onClick={() => scroll(1)}
-            className={`absolute -right-4 top-[42%] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 md:grid ${!canScrollRight ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`absolute -right-5 top-[130px] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/30 bg-[#de1d3d]/70 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-[#de1d3d] xl:grid ${!canScrollRight ? "opacity-0 pointer-events-none" : "opacity-100"}`}
             aria-label="Scroll right"
           >
             <FaChevronRight size={14} />
@@ -334,8 +334,8 @@ export default function JourneySection() {
           </div>
         </div>
 
-        {/* Mobile year pills */}
-        <div className="mt-6 flex justify-center gap-2 md:hidden">
+        {/* Mobile + tablet year pills */}
+        <div className="mt-6 flex flex-wrap justify-center gap-2 lg:hidden">
           {milestones.map((m, i) => (
             <button
               key={m.year}
@@ -352,17 +352,18 @@ export default function JourneySection() {
         </div>
 
         {/* Desktop timeline bar */}
-        <div className="relative mt-10 hidden md:block">
-          <div className="absolute left-0 right-0 top-[7px] h-[2px] bg-white/20" />
+        <div className="relative mt-12 hidden lg:block">
+          {/* Track line — inset so it spans between the first and last dots, not the full width */}
+          <div className="absolute left-20 right-20 top-[7px] h-[2px] bg-white/20" />
           <motion.div
-            className="absolute left-0 top-[7px] h-[2px] bg-white/50"
+            className="absolute left-20 top-[7px] h-[2px] bg-white/50"
             initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
+            whileInView={{ width: "calc(100% - 10rem)" }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           />
 
-          <div className="flex justify-between px-8 md:px-14 lg:px-20">
+          <div className="flex justify-between px-20">
             {milestones.map((m, i) => (
               <TimelineDot
                 key={m.year}

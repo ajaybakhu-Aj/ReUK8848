@@ -139,15 +139,13 @@ export function getSiteSettings(settings) {
   return { ...DEFAULT_SITE_SETTINGS, ...(settings || {}) }
 }
 
-function normalizeCmsLanguage(language) {
-  return "en"
-}
-
-export function getPageSectionContent(page, sectionKey, fallback = {}, language = "en") {
+// The CMS currently stores English copy only (`content_en`); non-English
+// locales are served from the local i18n JSON bundles. The `language`
+// argument is accepted for call-site symmetry and future localisation.
+export function getPageSectionContent(page, sectionKey, fallback = {}) {
   const section = (page?.sections || []).find(
     (item) => item.section_key === sectionKey && item.is_active !== false,
   )
-  normalizeCmsLanguage(language)
   return {
     ...fallback,
     ...(section?.content || {}),

@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform, useAnimationFrame } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView, useAnimationFrame } from "framer-motion";
 
 const badges = [
   { value: "8848M", label: "MT. EVEREST" },

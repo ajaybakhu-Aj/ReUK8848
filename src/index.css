@@ -76,6 +76,40 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ------------------------------------------------------------------ */
+/* Replica design tokens (match studio-1084841291-11170.web.app)       */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-nepal-red: #de1d3d;
+  --color-nepal-navy: #26367c;
+  --color-nepal-blue: #21408e;
+  --color-nepal-cream: #f7f2e6;
+
+  --font-poppins: "Poppins", "8848 Poppins", sans-serif;
+  --font-montserrat: "Montserrat", "8848 Poppins", sans-serif;
+  --font-shoem: "Bebas Neue", "ShoeM", sans-serif;
+  --font-anod: "Anodyne", "Bebas Neue", sans-serif;
+  --font-anodyne: "Anodyne", "Bebas Neue", sans-serif;
+}
+
+/* Bebas Neue is loaded from Google Fonts in index.html; Anodyne is local */
+
+@keyframes vibrate-subtle {
+  0% { transform: translate(0) rotate(0); }
+  15% { transform: translate(-3px, 2px) rotate(-1deg); }
+  30% { transform: translate(3px, -2px) rotate(1deg); }
+  45% { transform: translate(-2px, 1px) rotate(-0.5deg); }
+  60% { transform: translate(2px, -1px) rotate(0.5deg); }
+  75% { transform: translate(-1px) rotate(0); }
+  100% { transform: translate(0) rotate(0); }
+}
+
+.animate-vibrate-entrance {
+  animation: vibrate-subtle 3s ease-in-out forwards;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
 html, body {
   font-family: var(--font-sans);
   background: var(--background);

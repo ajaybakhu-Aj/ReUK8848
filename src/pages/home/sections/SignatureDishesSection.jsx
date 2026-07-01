@@ -1,6 +1,9 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { FaStar } from "react-icons/fa";
+
+const MotionLink = motion.create(Link);
 
 const DISHES = [
   {
@@ -34,8 +37,8 @@ function DishCard({ dish, index }) {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <motion.a
-      href="/menu"
+    <MotionLink
+      to="/menu"
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -74,7 +77,7 @@ function DishCard({ dish, index }) {
           {dish.reviews} Reviews
         </span>
       </div>
-    </motion.a>
+    </MotionLink>
   );
 }
 
@@ -123,15 +126,15 @@ export default function SignatureDishesSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-14 text-center sm:mt-16"
         >
-          <a
-            href="/menu"
+          <Link
+            to="/menu"
             className="inline-flex items-center gap-2 rounded-full bg-[#de1d3d] px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-red-500/20 transition-all hover:bg-[#c51625] hover:shadow-xl hover:-translate-y-0.5"
           >
             Explore Full Menu
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

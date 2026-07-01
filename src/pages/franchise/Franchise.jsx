@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next"
 import { MdEmail, MdPhone } from "react-icons/md"
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const EVEREST_BADGE = "/8848-assets/mount-everest-nepal-8848.png";
 
 function FranchiseForm() {
   const { t } = useTranslation("franchise")

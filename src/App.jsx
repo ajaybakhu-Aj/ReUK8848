@@ -7,8 +7,9 @@ import StudioRoutes from "@/studio/routes/StudioRoutes"
 const Home = lazy(() => import("@/pages/home/Home"))
 const About = lazy(() => import("@/pages/about/About"))
 const Menu = lazy(() => import("@/pages/menu/menu"))
-const Gallery = lazy(() => import("@/pages/gallery/gallery"))
 const FranchisePage = lazy(() => import("@/pages/franchise/franchiseall"))
+const Gallery = lazy(() => import("@/pages/gallery/gallery"))
+const ComingSoon = lazy(() => import("@/pages/coming-soon/ComingSoon"))
 
 // Optional: add a loading spinner/placeholder
 function PageLoader() {
@@ -28,7 +29,11 @@ export default function App() {
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/about-us" element={<Layout><About /></Layout>} />
           <Route path="/menu" element={<Layout><Menu /></Layout>} />
-          <Route path="/gallery" element={<Navigate to="/" replace />} />
+          <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
+          <Route path="/events" element={<Layout><ComingSoon title="Events" /></Layout>} />
+          <Route path="/rewards" element={<Layout><ComingSoon title="Rewards" /></Layout>} />
+          <Route path="/stuff" element={<Layout><ComingSoon title="Stuff" /></Layout>} />
+          <Route path="/careers" element={<Layout><ComingSoon title="Careers" /></Layout>} />
           <Route path="/franchise" element={<Layout><FranchisePage /></Layout>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

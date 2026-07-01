@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { Edit3, Plus, Save, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
@@ -261,12 +261,7 @@ function ItemDialog({ open, onOpenChange, title, fields, item, onSave, saving })
   const [errors, setErrors] = useState([])
   const value = { ...(item || {}), ...form }
 
-  useEffect(() => {
-    if (!open) {
-      setForm({})
-      setErrors([])
-    }
-  }, [open])
+  // Unsaved edits are cleared by the Dialog's onOpenChange handler on close.
 
   function update(key, next) {
     setForm((state) => ({ ...state, [key]: next }))
@@ -571,10 +566,6 @@ export function PagesEditorPage() {
   const activePage = data.find((page) => page.slug === activeSlug) || data[0]
   const sections = activePage?.sections || []
   const activeSection = sections.find((section) => section.section_key === activeSectionKey) || sections[0]
-
-  useEffect(() => {
-    if (!activePage && data.length) setActiveSlug(data[0].slug)
-  }, [activePage, data])
 
   return (
     <div className="space-y-5">

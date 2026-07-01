@@ -8,7 +8,6 @@ const PAGE_H = 546;
 
 // Book size (two pages)
 const BOOK_W = PAGE_W * 2;
-const BOOK_H = PAGE_H;
 
 const MenuPage = forwardRef(function MenuPage({ page, src }, ref) {
   return (

@@ -1,6 +1,5 @@
 ﻿"use client";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { getFeaturedGalleryImage, useGalleryImages } from "@/lib/cms";
 

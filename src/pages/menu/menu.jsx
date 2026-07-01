@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { EXTERNAL_LINKS } from "@/lib/links";
-import { FaFire, FaLeaf } from "react-icons/fa";
+import { FaLeaf } from "react-icons/fa";
 import { MdLocalFireDepartment } from "react-icons/md";
 
 const MENU_DATA = [

@@ -1,750 +1,185 @@
-import { useRef, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { getGalleryImages, useGalleryImages } from "@/lib/cms";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useInView,
-  AnimatePresence,
-} from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const DEFAULT_IMAGES = [
-  {
-    id: 1,
-    src: "/gallery/617644782_1299501648874857_563777570824911312_n.jpg",
-    alt: "8848 Momo House gallery image 1",
-    caption: "Authentic Himalayan Flavors",
-    depth: 0,
-  },
-  {
-    id: 2,
-    src: "/gallery/689672756_18075866372378582_4748471350885885049_n.jpg",
-    alt: "8848 Momo House gallery image 2",
-    caption: "Crafted With Tradition",
-    depth: 2,
-  },
-  {
-    id: 3,
-    src: "/gallery/682083582_18073447619378582_4201470612714727230_n.jpg",
-    alt: "8848 Momo House gallery image 3",
-    caption: "Elevated Dining Experience",
-    depth: 1,
-  },
-  {
-    id: 4,
-    src: "/gallery/683844009_18074008022378582_6744251658218158524_n.jpg",
-    alt: "8848 Momo House gallery image 4",
-    caption: "Signature Franchise Ambience",
-    depth: 0,
-  },
-  {
-    id: 5,
-    src: "/gallery/690913600_1391357303022624_306986777952760570_n.jpg",
-    alt: "8848 Momo House gallery image 5",
-    caption: "Freshly Prepared Daily",
-    depth: 2,
-  },
-  {
-    id: 6,
-    src: "/gallery/699905803_1395674515924236_8862937895640454602_n.jpg",
-    alt: "8848 Momo House gallery image 6",
-    caption: "The Taste of the Himalayas",
-    depth: 1,
-  },
-  {
-    id: 7,
-    src: "/gallery/659653523_1363583049133383_5294780339634034547_n.jpg",
-    alt: "8848 Momo House gallery image 7",
-    caption: "Premium Restaurant Experience",
-    depth: 2,
-  },
-  {
-    id: 8,
-    src: "/gallery/663309908_1363583052466716_2927746911495968980_n.jpg",
-    alt: "8848 Momo House gallery image 8",
-    caption: "Modern Himalayan Interior",
-    depth: 0,
-  },
-  {
-    id: 9,
-    src: "/gallery/657818651_1361001296058225_7780074548649079592_n.jpg",
-    alt: "8848 Momo House gallery image 9",
-    caption: "Every Detail Matters",
-    depth: 1,
-  },
-  {
-    id: 10,
-    src: "/gallery/659052232_1361001319391556_8113592981594270841_n.jpg",
-    alt: "8848 Momo House gallery image 10",
-    caption: "A Warm Dining Atmosphere",
-    depth: 0,
-  },
-  {
-    id: 11,
-    src: "/gallery/658042542_1360998722725149_3188214951558336334_n.jpg",
-    alt: "8848 Momo House gallery image 11",
-    caption: "Luxury Meets Tradition",
-    depth: 2,
-  },
-  {
-    id: 12,
-    src: "/gallery/514522482_1138513781640312_928824356955485501_n.jpg",
-    alt: "8848 Momo House gallery image 12",
-    caption: "Curated Culinary Moments",
-    depth: 1,
-  },
-  {
-    id: 13,
-    src: "/gallery/515503401_1138293954995628_4231813753025719888_n.jpg",
-    alt: "8848 Momo House gallery image 13",
-    caption: "Authenticity in Every Bite",
-    depth: 2,
-  },
-  {
-    id: 14,
-    src: "/gallery/493703598_1097963899028634_7754026072028280047_n.jpg",
-    alt: "8848 Momo House gallery image 14",
-    caption: "Inspired by Himalayan Culture",
-    depth: 0,
-  },
-  {
-    id: 15,
-    src: "/gallery/630831463_1317107637114258_4769852074049037717_n.jpg",
-    alt: "8848 Momo House gallery image 15",
-    caption: "Beautifully Crafted Spaces",
-    depth: 1,
-  },
-  {
-    id: 16,
-    src: "/gallery/649925123_1342420134583008_7241311262784313452_n.jpg",
-    alt: "8848 Momo House gallery image 16",
-    caption: "Experience the Summit",
-    depth: 0,
-  },
-  {
-    id: 17,
-    src: "/gallery/667210978_1365141555644199_8043924957435588798_n.jpg",
-    alt: "8848 Momo House gallery image 17",
-    caption: "Moments Worth Sharing",
-    depth: 2,
-  },
-  {
-    id: 18,
-    src: "/gallery/660275657_1363841442440877_1508218509033431157_n.jpg",
-    alt: "8848 Momo House gallery image 18",
-    caption: "Tradition Reimagined",
-    depth: 1,
-  },
-  {
-    id: 19,
-    src: "/gallery/635010081_932313339310448_4999394022787579775_n.jpg",
-    alt: "8848 Momo House gallery image 19",
-    caption: "Premium Hospitality",
-    depth: 0,
-  },
-  {
-    id: 20,
-    src: "/gallery/635235810_934031489138633_4034975548481698592_n.jpg",
-    alt: "8848 Momo House gallery image 20",
-    caption: "Flavors Above Expectations",
-    depth: 2,
-  },
-  {
-    id: 21,
-    src: "/gallery/679528802_987160163825765_2976338946044117438_n.jpg",
-    alt: "8848 Momo House gallery image 21",
-    caption: "Designed for Memorable Gatherings",
-    depth: 1,
-  },
-  {
-    id: 22,
-    src: "/gallery/679051057_988014597073655_3559615886381215986_n.jpg",
-    alt: "8848 Momo House gallery image 22",
-    caption: "Refined Himalayan Dining",
-    depth: 0,
-  },
-  {
-    id: 23,
-    src: "/gallery/679994087_1379560484202306_6412673578865363964_n.jpg",
-    alt: "8848 Momo House gallery image 23",
-    caption: "Where Culture Meets Cuisine",
-    depth: 2,
-  },
-  {
-    id: 24,
-    src: "/gallery/657364644_1360998956058459_481425256782942273_n.jpg",
-    alt: "8848 Momo House gallery image 24",
-    caption: "Authentic Himalayan Dining",
-    depth: 0,
-  },
-  {
-    id: 25,
-    src: "/gallery/661312277_1360998152725206_2387943504577623895_n.jpg",
-    alt: "8848 Momo House gallery image 25",
-    caption: "Crafted Culinary Moments",
-    depth: 2,
-  },
-  {
-    id: 26,
-    src: "/gallery/650619506_1345266560965032_6862016175277555941_n.jpg",
-    alt: "8848 Momo House gallery image 26",
-    caption: "The Taste of the Himalayas",
-    depth: 1,
-  },
-  {
-    id: 27,
-    src: "/gallery/658827015_1359086639583024_1585698037278279405_n.jpg",
-    alt: "8848 Momo House gallery image 27",
-    caption: "Elevated Restaurant Experience",
-    depth: 0,
-  },
-  {
-    id: 28,
-    src: "/gallery/657763472_1360998326058522_6156070505580579085_n.jpg",
-    alt: "8848 Momo House gallery image 28",
-    caption: "Luxury Meets Tradition",
-    depth: 2,
-  },
-  {
-    id: 29,
-    src: "/gallery/660822584_1360998192725202_277411545268006583_n.jpg",
-    alt: "8848 Momo House gallery image 29",
-    caption: "Inspired by Himalayan Culture",
-    depth: 1,
-  },
-  {
-    id: 30,
-    src: "/gallery/657346158_1360998829391805_7784036709851637162_n.jpg",
-    alt: "8848 Momo House gallery image 30",
-    caption: "Premium Dining Atmosphere",
-    depth: 2,
-  },
-  {
-    id: 31,
-    src: "/gallery/658942206_1360998986058456_4729231746235759090_n.jpg",
-    alt: "8848 Momo House gallery image 31",
-    caption: "Every Detail Curated",
-    depth: 0,
-  },
-  {
-    id: 32,
-    src: "/gallery/658012456_1360999059391782_3542414904991694057_n.jpg",
-    alt: "8848 Momo House gallery image 32",
-    caption: "Modern Himalayan Interior",
-    depth: 1,
-  },
-  {
-    id: 33,
-    src: "/gallery/660606523_1360999206058434_2067406470089766344_n.jpg",
-    alt: "8848 Momo House gallery image 33",
-    caption: "Curated Guest Experience",
-    depth: 0,
-  },
-  {
-    id: 34,
-    src: "/gallery/658297334_1360999252725096_3023324195421215656_n.jpg",
-    alt: "8848 Momo House gallery image 34",
-    caption: "Warm Himalayan Welcome",
-    depth: 2,
-  },
-  {
-    id: 35,
-    src: "/gallery/660705672_1360999326058422_7649937306138062630_n.jpg",
-    alt: "8848 Momo House gallery image 35",
-    caption: "Designed for Gatherings",
-    depth: 1,
-  },
-  {
-    id: 36,
-    src: "/gallery/571129961_843411921533924_353649833585970143_n.jpg",
-    alt: "8848 Momo House gallery image 36",
-    caption: "Experience the Summit",
-    depth: 2,
-  },
-  {
-    id: 37,
-    src: "/gallery/581674475_859617753246674_9211006937216067306_n.jpg",
-    alt: "8848 Momo House gallery image 37",
-    caption: "Authenticity in Every Bite",
-    depth: 0,
-  },
-  {
-    id: 38,
-    src: "/gallery/571353822_849523417589441_3169294274818382416_n.jpg",
-    alt: "8848 Momo House gallery image 38",
-    caption: "The Art of Flavor",
-    depth: 1,
-  },
-  {
-    id: 39,
-    src: "/gallery/576804468_855343500340766_8602820587857597555_n.jpg",
-    alt: "8848 Momo House gallery image 39",
-    caption: "Beautifully Crafted Spaces",
-    depth: 0,
-  },
-  {
-    id: 40,
-    src: "/gallery/573872141_853647590510357_1634949583157372937_n.jpg",
-    alt: "8848 Momo House gallery image 40",
-    caption: "Tradition Reimagined",
-    depth: 2,
-  },
-  {
-    id: 41,
-    src: "/gallery/590716561_871212105420572_8498077945170908908_n.jpg",
-    alt: "8848 Momo House gallery image 41",
-    caption: "Moments Worth Sharing",
-    depth: 1,
-  },
-  {
-    id: 42,
-    src: "/gallery/584909102_867349889140127_3367125591766371085_n.jpg",
-    alt: "8848 Momo House gallery image 42",
-    caption: "Premium Hospitality",
-    depth: 0,
-  },
-  {
-    id: 43,
-    src: "/gallery/585194569_866609359214180_1510164762163656183_n.jpg",
-    alt: "8848 Momo House gallery image 43",
-    caption: "Where Culture Meets Cuisine",
-    depth: 2,
-  },
+/* High-quality dish photography shipped with the project. */
+const FILES = [
+  "khaja-platter", "momo-platter", "steamed-momo", "jhol-momo", "tandoori-momo",
+  "crispy-fried-momo", "kothey-pan-fried-momo", "chilli-momo", "green-curry-momo",
+  "butter-chicken-momo", "mini-butter-chicken-momo", "golden-carbonara-momo",
+  "chocolate-momo", "kman-doo-wings", "buffalo-jerky", "pork-sekuwa",
+  "hot-smoky-chicken", "chilli-rush", "bao-burger", "loaded-fries", "bowl-of-fries",
+  "nuggets-fries", "sausage-on-stick", "chowmein-noodles", "sweet-tangy-noodles",
+  "fried-rice", "steamed-rice", "chicken-curry-bowl", "butter-chicken-bowl",
+  "goat-curry-bowl", "cottage-cheese-veg-curry", "nepalese-paratha", "himalayan-salad",
+  "edamame-crunch", "coolfi-scoops", "momo-sauce", "mint-chutney", "chilli-garlic-sauce",
+  "szechuan-sauce", "tangy-tomato-sauce",
 ];
 
-const DEPTH_CONFIG = {
-  0: { yRange: [-12, 12], scale: 1.0 },
-  1: { yRange: [-20, 20], scale: 1.0 },
-  2: { yRange: [-30, 30], scale: 1.0 },
-};
+const titleCase = (slug) =>
+  slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
+const IMAGES = FILES.map((slug, i) => ({
+  id: i + 1,
+  src: `/menu-images/${slug}.jpg`,
+  caption: titleCase(slug),
+}));
 
-function GalleryCard({ image, index, containerRef }) {
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-80px" });
-  const [hovered, setHovered] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
+export default function Gallery() {
+  const [active, setActive] = useState(null); // index or null
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const config = DEPTH_CONFIG[image.depth ?? 1];
-
-  const rawY = useTransform(scrollYProgress, [0, 1], config.yRange);
-  const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.8 });
-
-  const entryDelay = (index % 4) * 0.08 + Math.floor(index / 4) * 0.05;
-
-  return (
-    <motion.div
-      ref={cardRef}
-      style={{ y }}
-      className="gallery-card-wrapper"
-      sx={{ display: "inline-block", width: "100%", marginBottom: "1.5rem" }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 40, scale: 0.96 }}
-        animate={
-          isInView
-            ? { opacity: 1, y: 0, scale: 1 }
-            : { opacity: 0, y: 40, scale: 0.96 }
-        }
-        transition={{
-          duration: 0.75,
-          delay: entryDelay,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        onHoverStart={() => setHovered(true)}
-        onHoverEnd={() => setHovered(false)}
-        style={{
-          borderRadius: "20px",
-          overflow: "hidden",
-          cursor: "pointer",
-          position: "relative",
-          display: "block",
-          width: "100%",
-          boxShadow: hovered
-            ? "0 24px 64px rgba(99,140,215,0.22), 0 4px 16px rgba(99,140,215,0.12)"
-            : "0 8px 32px rgba(99,140,215,0.10), 0 2px 8px rgba(99,140,215,0.06)",
-          transition: "box-shadow 0.5s cubic-bezier(0.16,1,0.3,1)",
-        }}
-      >
-        {/* Shimmer placeholder */}
-        {!imgLoaded && (
-          <div
-            style={{
-              width: "100%",
-              paddingBottom: "75%",
-              background:
-                "linear-gradient(135deg, #dce8f8 0%, #edf2ff 50%, #dce8f8 100%)",
-              backgroundSize: "200% 200%",
-              animation: "shimmer 1.8s ease-in-out infinite",
-              borderRadius: "20px",
-            }}
-          />
-        )}
-
-        {/* Image */}
-        <motion.img
-          src={image.src}
-          alt={image.alt}
-          onLoad={() => setImgLoaded(true)}
-          style={{
-            width: "100%",
-            height: "auto",
-            display: "block",
-            opacity: imgLoaded ? 1 : 0,
-            transition: "opacity 0.5s ease",
-            transformOrigin: "center center",
-          }}
-          animate={{
-            scale: hovered ? 1.055 : 1,
-          }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        />
-
-        {/* Hover overlay */}
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top, rgba(14,30,80,0.72) 0%, rgba(14,30,80,0.18) 55%, transparent 100%)",
-            display: "flex",
-            alignItems: "flex-end",
-            padding: "20px",
-            pointerEvents: "none",
-          }}
-        >
-          <motion.p
-            animate={{ y: hovered ? 0 : 10, opacity: hovered ? 1 : 0 }}
-            transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              color: "#fff",
-              fontSize: "13px",
-              fontWeight: 500,
-              letterSpacing: "0.04em",
-              margin: 0,
-              lineHeight: 1.4,
-              textShadow: "0 1px 4px rgba(0,0,0,0.3)",
-            }}
-          >
-            {image.caption}
-          </motion.p>
-        </motion.div>
-
-        {/* Subtle light reflection */}
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.4 }}
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%)",
-            pointerEvents: "none",
-            borderRadius: "20px",
-          }}
-        />
-      </motion.div>
-    </motion.div>
+  const close = useCallback(() => setActive(null), []);
+  const prev = useCallback(
+    () => setActive((i) => (i === null ? i : (i - 1 + IMAGES.length) % IMAGES.length)),
+    [],
   );
-}
-
-
-function AmbientOrbs() {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        inset: 0,
-        overflow: "hidden",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}
-    >
-      {[
-        { w: 480, h: 480, top: "8%", left: "-8%", opacity: 0.28, delay: 0 },
-        { w: 360, h: 360, top: "45%", right: "-6%", opacity: 0.20, delay: 3 },
-        { w: 280, h: 280, top: "75%", left: "12%", opacity: 0.18, delay: 6 },
-        { w: 200, h: 200, top: "20%", right: "20%", opacity: 0.14, delay: 1.5 },
-      ].map((orb, i) => (
-        <motion.div
-          key={i}
-          animate={{
-            y: [0, -24, 0, 24, 0],
-            x: [0, 10, 0, -10, 0],
-            scale: [1, 1.06, 1, 0.96, 1],
-          }}
-          transition={{
-            duration: 14 + i * 3,
-            delay: orb.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            position: "absolute",
-            width: orb.w,
-            height: orb.h,
-            top: orb.top,
-            left: orb.left,
-            right: orb.right,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(99,140,215,1) 0%, rgba(140,180,255,0.4) 60%, transparent 100%)",
-            opacity: orb.opacity,
-            filter: "blur(60px)",
-          }}
-        />
-      ))}
-    </div>
+  const next = useCallback(
+    () => setActive((i) => (i === null ? i : (i + 1) % IMAGES.length)),
+    [],
   );
-}
 
-
-function SectionHeading() {
-  const { t } = useTranslation("gallery");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-
-  return (
-    <div
-      ref={ref}
-      style={{ textAlign: "center", marginBottom: "72px", position: "relative", zIndex: 1 }}
-    >
-      {/* Eyebrow */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "10px",
-          marginBottom: "20px",
-        }}
-      >
-        <span
-          style={{
-            display: "block",
-            width: "32px",
-            height: "1.5px",
-            background: "linear-gradient(to right, transparent, #638cd7)",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "11px",
-            fontWeight: 600,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#638cd7",
-          }}
-        >
-          {t("heading.eyebrow")}
-        </span>
-        <span
-          style={{
-            display: "block",
-            width: "32px",
-            height: "1.5px",
-            background: "linear-gradient(to left, transparent, #638cd7)",
-          }}
-        />
-      </motion.div>
-
-      {/* Main heading */}
-      <div style={{ overflow: "hidden" }}>
-        <motion.h2
-          initial={{ y: "100%", opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            fontSize: "clamp(36px, 5vw, 64px)",
-            fontWeight: 700,
-            color: "#0d1f4a",
-            lineHeight: 1.1,
-            margin: "0 0 20px",
-            fontFamily: "'Playfair Display', 'Georgia', serif",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {t("heading.title")}
-        </motion.h2>
-      </div>
-
-      {/* Description */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          fontSize: "16px",
-          color: "#5a6e96",
-          lineHeight: 1.75,
-          maxWidth: "540px",
-          margin: "0 auto",
-          fontWeight: 400,
-        }}
-      >
-         {t("heading.subtitle")}
-      </motion.p>
-    </div>
-  );
-}
-
-
-export default function FloatingGallery({ images = DEFAULT_IMAGES }) {
-  const sectionRef = useRef(null);
-  const [columns, setColumns] = useState(4);
-  const cmsImages = useGalleryImages();
-  const displayImages = images === DEFAULT_IMAGES ? getGalleryImages(cmsImages, DEFAULT_IMAGES) : images;
-
-  // Responsive column count
   useEffect(() => {
-    function updateColumns() {
-      const w = window.innerWidth;
-      if (w < 480) setColumns(1);
-      else if (w < 768) setColumns(2);
-      else if (w < 1100) setColumns(3);
-      else if (w < 1400) setColumns(4);
-      else setColumns(5);
-    }
-    updateColumns();
-    window.addEventListener("resize", updateColumns);
-    return () => window.removeEventListener("resize", updateColumns);
-  }, []);
-
-  // Distribute images into columns (top-to-bottom order, balanced)
-  const columnArrays = Array.from({ length: columns }, () => []);
-  displayImages.forEach((img, i) => {
-    columnArrays[i % columns].push({ ...img, globalIndex: i });
-  });
+    if (active === null) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [active, close, prev, next]);
 
   return (
-    <>
-      {/* Global styles injected once */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
-        @keyframes shimmer {
-          0%   { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-
-        .gallery-col {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .gallery-card-wrapper { transform: none !important; }
-        }
-      `}</style>
-
+    <div className="bg-white font-poppins text-gray-800">
+      {/* ------------------------- Hero band ------------------------- */}
       <section
-        ref={sectionRef}
+        className="relative w-full overflow-hidden bg-nepal-blue text-white py-16 md:py-24"
         style={{
-          position: "relative",
-          background:
-            "linear-gradient(180deg, #edf2ff 0%, #f2f7ff 40%, #edf2ff 100%)",
-          padding: "100px 0 120px",
-          overflow: "hidden",
+          backgroundImage: `url('/8848-assets/Light-Mountain-Watermark-Top.png')`,
+          backgroundPosition: "left top",
+          backgroundRepeat: "no-repeat",
         }}
-        aria-label="Gallery — Moments from 8848 Momo House"
       >
-        {/* Ambient atmospheric orbs */}
-        <AmbientOrbs />
-
-        {/* Content wrapper */}
-        <div
-          style={{
-            maxWidth: "1440px",
-            margin: "0 auto",
-            padding: "0 32px",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          <SectionHeading />
-
-          {/* Masonry grid via flex columns */}
-          <div
-            style={{
-              display: "flex",
-              gap: "24px",
-              alignItems: "flex-start",
-            }}
-          >
-            {columnArrays.map((colImages, colIdx) => (
-              <div
-                key={colIdx}
-                className="gallery-col"
-                style={{
-                  flex: "1 1 0",
-                  marginTop: colIdx % 2 === 1 ? "48px" : "0px",
-                }}
-              >
-                {colImages.map((image) => (
-                  <GalleryCard
-                    key={image.id}
-                    image={image}
-                    index={image.globalIndex}
-                    containerRef={sectionRef}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              textAlign: "center",
-              marginTop: "80px",
-            }}
-          >
-            {/* <motion.button
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "14px 36px",
-                borderRadius: "50px",
-                background: "linear-gradient(135deg, #4e7bd4 0%, #638cd7 100%)",
-                color: "#fff",
-                fontSize: "14px",
-                fontWeight: 600,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                border: "none",
-                cursor: "pointer",
-                boxShadow: "0 8px 32px rgba(78,123,212,0.32), 0 2px 8px rgba(78,123,212,0.18)",
-              }}
-            >
-              Explore All Moments
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </motion.button> */}
-          </motion.div>
+        <div className="absolute inset-0 bg-nepal-blue/60" />
+        <div className="container mx-auto max-w-[1400px] px-4 relative z-10 text-center">
+          <p className="font-montserrat text-[13px] md:text-[15px] uppercase tracking-[4px] text-white/80 mb-4 font-bold">
+            8848 Momo House · United Kingdom
+          </p>
+          <h1 className="font-shoem text-[52px] md:text-[96px] leading-none tracking-wide">
+            OUR GALLERY
+          </h1>
+          <p className="font-poppins text-sm md:text-base tracking-[3px] uppercase mt-4 font-bold text-white/90">
+            A Story in Every Bite • Our Journey • Our Passion
+          </p>
         </div>
       </section>
-    </>
+
+      {/* ------------------------- Grid ------------------------- */}
+      <section className="w-full py-12 md:py-20 px-4 md:px-12 lg:px-24 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-8 pb-4 border-b border-nepal-navy/20">
+            <div className="flex items-baseline gap-3">
+              <h2 className="text-[34px] md:text-[52px] font-shoem text-nepal-navy leading-none tracking-wide">
+                EVERY
+              </h2>
+              <span className="text-[34px] md:text-[52px] font-anod text-nepal-red/80 ml-1 translate-y-1">
+                MOMOMENT
+              </span>
+            </div>
+            <Link
+              to="/menu"
+              className="hidden md:flex items-center px-[28px] py-[12px] bg-transparent border-2 border-nepal-red text-nepal-red font-poppins font-bold text-[14px] tracking-widest uppercase hover:bg-nepal-red hover:text-white transition-all duration-300 shadow-lg hover:scale-105 mb-2"
+            >
+              View Menu
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+            {IMAGES.map((img, i) => (
+              <button
+                key={img.id}
+                onClick={() => setActive(i)}
+                className="group relative block overflow-hidden rounded-sm aspect-square cursor-pointer focus:outline-none focus:ring-2 focus:ring-nepal-red"
+                aria-label={`Open ${img.caption}`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.caption}
+                  loading="lazy"
+                  className="w-full h-full object-cover grayscale-[0.15] transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-left translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+                  <span className="block text-nepal-red font-bold text-[10px] tracking-widest uppercase mb-1">
+                    8848
+                  </span>
+                  <h3 className="text-white font-shoem text-xl md:text-2xl uppercase leading-tight tracking-wide drop-shadow">
+                    {img.caption}
+                  </h3>
+                </div>
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-nepal-red/50 transition-colors duration-500 rounded-sm" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------- Lightbox ------------------------- */}
+      {active !== null && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 md:p-10"
+          onClick={close}
+        >
+          <button
+            onClick={close}
+            aria-label="Close"
+            className="absolute top-4 right-4 md:top-6 md:right-8 text-white/80 hover:text-white transition-colors"
+          >
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            aria-label="Previous"
+            className="absolute left-2 md:left-8 text-white/70 hover:text-nepal-red transition-colors"
+          >
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <figure className="max-w-[90vw] max-h-[85vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={IMAGES[active].src}
+              alt={IMAGES[active].caption}
+              className="max-w-[90vw] max-h-[75vh] object-contain rounded-sm shadow-2xl"
+            />
+            <figcaption className="mt-4 text-center">
+              <span className="font-shoem text-white text-2xl md:text-3xl uppercase tracking-wide">
+                {IMAGES[active].caption}
+              </span>
+              <span className="block text-white/50 text-xs mt-1 font-poppins">
+                {active + 1} / {IMAGES.length}
+              </span>
+            </figcaption>
+          </figure>
+
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            aria-label="Next"
+            className="absolute right-2 md:right-8 text-white/70 hover:text-nepal-red transition-colors"
+          >
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

@@ -1,9 +1,6 @@
 import { createContext, useContext, useState } from "react"
-import { Input } from "@/components/ui/input"
 import { useTranslation } from "react-i18next"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Toaster } from "@/components/ui/sonner"
-import { z } from "zod"
 import { motion } from "framer-motion"
 import {
   Mountain,
@@ -35,19 +32,6 @@ import {
 } from "@/lib/cms"
 
 const EVEREST_BADGE = "/8848-assets/mount-everest-nepal-8848.png"
-
-/* -------------------- schema (unchanged) -------------------- */
-const inquirySchema = z.object({
-  fullName: z.string().trim().min(2, "Please enter your name").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  phone: z.string().trim().min(6, "Please enter a valid phone").max(30),
-  region: z.string().min(1, "Select a region"),
-  city: z.string().trim().min(2, "Enter your town / city").max(100),
-  postcode: z.string().trim().min(3, "Enter your postcode").max(12),
-  capital: z.string().min(1, "Select your investment range"),
-  experience: z.string().min(1, "Select your experience"),
-  message: z.string().trim().max(1000).optional(),
-})
 
 /* ─── Design tokens (mirrors homepage) ─── */
 const C = {
@@ -895,35 +879,6 @@ function InquiryForm() {
         </motion.div>
       </div>
     </section>
-  )
-}
-
-/* helpers below unchanged (kept) */
-function Field({ label, name, type, placeholder, required }) {
-  return (
-    <div>
-      <label htmlFor={name} className="block mb-2 text-xs tracking-widest uppercase au-nav-font" style={{ color: C.navy }}>
-        {label}
-      </label>
-      <Input id={name} name={name} type={type || "text"} placeholder={placeholder} required={required} className="mt-0" />
-    </div>
-  )
-}
-function SelectField({ label, name, options, placeholder }) {
-  const [val, setVal] = useState("")
-  return (
-    <div>
-      <div className="block mb-2 text-xs tracking-widest uppercase au-nav-font" style={{ color: C.navy }}>
-        {label}
-      </div>
-      <input type="hidden" name={name} value={val} />
-      <Select value={val} onValueChange={setVal}>
-        <SelectTrigger><SelectValue placeholder={placeholder} /></SelectTrigger>
-        <SelectContent>
-          {options.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
-        </SelectContent>
-      </Select>
-    </div>
   )
 }
 
