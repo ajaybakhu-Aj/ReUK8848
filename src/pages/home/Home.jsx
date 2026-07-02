@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { getPageSectionContent, useHomePage } from "@/lib/cms";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import Reveal, { EASE, staggerParent, staggerItem } from "@/components/Reveal";
-import ownerImg from "@/assets/owner.jpg";
+import storefrontImg from "@/assets/storefront.jpg";
+
+const FOUNDER_IMG = "/gallery/6.jpg";
 
 /* Asset paths (project's own images) */
 const A = {
@@ -19,12 +21,15 @@ const A = {
   yak: "/8848-assets/yak-footer.png",
 };
 
+/* Real 8848 Momo House moments — client-supplied hi-res photos (gallery/1–7) */
 const GALLERY = [
-  "/menu-images/khaja-platter.jpg",
-  "/menu-images/steamed-momo.jpg",
-  "/menu-images/tandoori-momo.jpg",
-  "/menu-images/green-curry-momo.jpg",
-  "/menu-images/mini-butter-chicken-momo.jpg",
+  "/gallery/4.jpg",
+  "/gallery/3.jpg",
+  "/gallery/5.jpg",
+  "/gallery/6.jpg",
+  "/gallery/7.jpg",
+  "/gallery/1.jpg",
+  "/gallery/2.jpg",
 ];
 
 /* Signature momo line-up for the food showcase */
@@ -33,7 +38,7 @@ const SIGNATURE_MOMOS = [
     img: "/menu-images/steamed-momo.jpg",
     name: "Steamed Momo",
     tag: "The Original",
-    desc: "Delicate, hand-folded parcels steamed to juicy perfection — the classic that started it all.",
+    desc: "Delicate parcels steamed to juicy perfection — the classic that started it all.",
   },
   {
     img: "/menu-images/jhol-momo.jpg",
@@ -107,11 +112,13 @@ export default function Home() {
   }, i18n.language);
 
   const galleryCards = [
-    { tag: "THE RESULT", title: "Culinary Masterpiece", desc: "A khaja platter crafted with precision and passion." },
-    { tag: "STEAMED FRESH", title: "Handmade with Love", desc: "Plump momos, hand-folded and steamed to perfection." },
-    { tag: "FIRED UP", title: "Tandoori Momo", desc: "Char-grilled and marinated in bold Himalayan spices." },
-    { tag: "FAN FAVOURITE", title: "Green Curry Momo", desc: "Fragrant, creamy and packed with oriental flavour." },
-    { tag: "THE CLASSIC", title: "Butter Chicken Momo", desc: "Rich, buttery and irresistibly moreish." },
+    { tag: "GOOD TIMES", title: "Better Together", desc: "Friends, family and momos — the perfect recipe for joy." },
+    { tag: "THE COMMUNITY", title: "Bringing People Together", desc: "Momo lovers united, one plate at a time." },
+    { tag: "THE BUZZ", title: "Always Buzzing", desc: "Late nights, full tables and endless momos." },
+    { tag: "THE FAMILY", title: "Momoste!", desc: "The smiling faces behind every plate." },
+    { tag: "THE VIBE", title: "Come On In", desc: "Cosy nights and unforgettable flavours." },
+    { tag: "OUR HOME", title: "Where It Begins", desc: "Fresh momos, made to order, all day long." },
+    { tag: "FIND US", title: "Your Local 8848", desc: "A warm welcome on every high street." },
   ];
 
   return (
@@ -119,7 +126,7 @@ export default function Home() {
       {/* ============================ HERO ============================ */}
       <section
         id="home"
-        className="relative w-full min-h-[60vh] md:min-h-[80vh] overflow-hidden pt-[60px] md:pt-[90px] pb-10 bg-[#EDF2FF]"
+        className="relative w-full min-h-[44vh] md:min-h-[56vh] overflow-hidden pt-[32px] md:pt-[48px] pb-8 bg-[#EDF2FF]"
         style={{
           backgroundImage: `url('${A.mountainTop}')`,
           backgroundPosition: "left top",
@@ -134,56 +141,56 @@ export default function Home() {
           src={A.homBadge}
           alt=""
           aria-hidden="true"
-          className="absolute right-[5%] top-[15%] w-[280px] h-[280px] md:w-[340px] md:h-[340px] z-[5] pointer-events-none opacity-70"
+          className="absolute right-[5%] top-[12%] w-[210px] h-[210px] md:w-[270px] md:h-[270px] z-[5] pointer-events-none opacity-70"
           initial={{ opacity: 0, scale: 0.85, rotate: -12 }}
           animate={{ opacity: 0.7, scale: 1, rotate: 0 }}
           transition={{ duration: 1, ease: EASE }}
         />
 
-        <div className="container mx-auto max-w-[1400px] px-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start pt-6 md:pt-10">
+        <div className="container mx-auto max-w-[1400px] px-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start pt-2 md:pt-4">
           <motion.div
             className="w-full lg:w-[55%] flex flex-col items-start text-left"
             variants={staggerParent}
             initial="hidden"
             animate="show"
           >
-            <motion.p variants={staggerItem} className="font-montserrat text-[14px] md:text-[16px] text-nepal-red uppercase tracking-[0.5px] mb-4 font-bold">
+            <motion.p variants={staggerItem} className="font-montserrat text-[13px] md:text-[15px] text-nepal-red uppercase tracking-[0.5px] mb-3 font-bold">
               {hero.kicker}
             </motion.p>
-            <motion.h2 variants={staggerItem} className="font-shoem text-[42px] md:text-[70px] leading-[1] text-nepal-navy mb-0">
+            <motion.h2 variants={staggerItem} className="font-shoem text-[36px] md:text-[56px] leading-[1] text-nepal-navy mb-0">
               {hero.title1}
             </motion.h2>
-            <motion.h2 variants={staggerItem} className="font-anod text-[42px] md:text-[70px] leading-[1] text-nepal-red mb-6 md:mb-8">
+            <motion.h2 variants={staggerItem} className="font-anod text-[36px] md:text-[56px] leading-[1] text-nepal-red mb-4 md:mb-5">
               {hero.title2}
             </motion.h2>
-            <motion.p variants={staggerItem} className="font-poppins text-[16px] text-[#26367C] leading-[26px] max-w-[500px] mb-8">
+            <motion.p variants={staggerItem} className="font-poppins text-[15px] text-[#26367C] leading-[24px] max-w-[480px] mb-6">
               {hero.desc}
             </motion.p>
-            <motion.div variants={staggerItem} className="flex flex-wrap gap-4 mb-8">
+            <motion.div variants={staggerItem} className="flex flex-wrap gap-4 mb-5">
               <Link to="/menu">
                 <button className="bg-nepal-red text-white py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
                   {hero.ctaMenu}
                 </button>
               </Link>
-              <a href={EXTERNAL_LINKS.order} target="_blank" rel="noreferrer">
+              <Link to="/franchise">
                 <button className="bg-transparent border-2 border-nepal-blue text-nepal-blue py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-nepal-blue hover:text-white transition-all duration-300 shadow-lg hover:scale-105">
-                  {hero.ctaOrder}
+                  Franchise Inquiry
                 </button>
-              </a>
+              </Link>
             </motion.div>
             <motion.img
               variants={staggerItem}
               src={A.everest}
               alt="Mount Everest 8848m badge"
-              className="w-[100px] h-auto mt-4 opacity-90"
+              className="w-[82px] h-auto mt-2 opacity-90"
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
 
-          <div className="hidden lg:flex w-full lg:w-[45%] relative h-[400px] lg:h-[600px] mt-10 lg:mt-0 justify-end">
+          <div className="hidden lg:flex w-full lg:w-[45%] relative h-[300px] lg:h-[430px] mt-8 lg:mt-0 justify-end">
             <motion.div
-              className="absolute right-[-20px] lg:right-[-40px] top-10 w-[80%] lg:w-[90%] max-w-[500px] z-10"
+              className="absolute right-[-20px] lg:right-[-40px] top-4 w-[76%] lg:w-[84%] max-w-[420px] z-10"
               initial={{ opacity: 0, x: 60, rotate: 6 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
               transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
@@ -209,17 +216,18 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
             <Reveal variant="right" className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-              <motion.div
-                className="relative w-[300px] md:w-[400px] lg:w-[500px]"
-                whileHover={{ rotate: 8, scale: 1.04 }}
-                transition={{ type: "spring", stiffness: 120, damping: 12 }}
-              >
-                <img
+              <div className="relative w-[300px] md:w-[400px] lg:w-[500px]">
+                <motion.img
                   src={A.brassBowl}
                   alt="Delicious momos on a brass plate"
-                  className="w-full h-auto object-contain drop-shadow-xl"
+                  className="w-full h-auto object-contain drop-shadow-2xl"
+                  animate={{ rotate: 360, y: [0, -12, 0] }}
+                  transition={{
+                    rotate: { duration: 34, repeat: Infinity, ease: "linear" },
+                    y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                  }}
                 />
-              </motion.div>
+              </div>
             </Reveal>
 
             <motion.div
@@ -261,14 +269,100 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== FRANCHISE PROMO ==================== */}
+      <section className="relative w-full overflow-hidden bg-nepal-blue text-white py-16 md:py-24">
+        <div
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "340px", backgroundRepeat: "repeat" }}
+        />
+        <div className="container mx-auto max-w-[1300px] px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 items-center gap-10 lg:gap-16">
+            {/* Image */}
+            <Reveal variant="left" duration={0.8} className="relative order-2 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                <img
+                  src={storefrontImg}
+                  alt="An 8848 Momo House storefront"
+                  className="w-full h-[280px] md:h-[440px] object-cover"
+                  loading="lazy"
+                />
+                <span className="absolute top-4 left-4 bg-nepal-red text-white text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow">
+                  Est. Australia · 20+ Stores
+                </span>
+              </div>
+              <motion.img
+                src={A.everest}
+                alt=""
+                aria-hidden="true"
+                className="absolute -bottom-6 -right-4 w-[90px] md:w-[120px] drop-shadow-xl"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              />
+            </Reveal>
+
+            {/* Copy */}
+            <motion.div
+              className="order-1 lg:order-2 text-center lg:text-left"
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.span
+                variants={staggerItem}
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-5 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/90"
+              >
+                <span className="h-2 w-2 rounded-full bg-nepal-red" />
+                Franchise With Us
+              </motion.span>
+
+              <motion.h2 variants={staggerItem} className="mt-6 font-shoem leading-[0.9] tracking-wide">
+                <span className="block text-[44px] md:text-[74px]">BRING 8848</span>
+                <span className="block text-[44px] md:text-[74px]">TO YOUR CITY</span>
+                <span className="block font-anod text-nepal-red text-[30px] md:text-[46px] mt-2">
+                  OWN THE FIRST NEPALESE MOMO FRANCHISE
+                </span>
+              </motion.h2>
+
+              <motion.p variants={staggerItem} className="mt-6 font-poppins text-white/80 text-[15px] md:text-[18px] leading-relaxed max-w-xl mx-auto lg:mx-0">
+                From a single kitchen in Australia to 20+ stores and growing — now we're
+                inviting founding partners to bring the momo revolution to the United Kingdom.
+              </motion.p>
+
+              <motion.div variants={staggerItem} className="mt-8 flex flex-wrap justify-center lg:justify-start gap-8">
+                {[
+                  { k: "20+", v: "Stores" },
+                  { k: "3M+", v: "Momos served" },
+                  { k: "1st", v: "Nepalese franchise" },
+                ].map((s) => (
+                  <div key={s.v} className="text-center lg:text-left">
+                    <div className="font-shoem text-nepal-red text-[38px] md:text-[46px] leading-none">{s.k}</div>
+                    <div className="font-poppins text-white/70 text-[12px] uppercase tracking-widest mt-1">{s.v}</div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="mt-9">
+                <Link
+                  to="/franchise"
+                  className="inline-flex items-center px-[32px] py-[14px] bg-nepal-red text-white font-poppins font-bold text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-xl group rounded-full"
+                >
+                  Start Franchise Inquiry
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ==================== MOMO SPOTLIGHT (promo) ==================== */}
-      <section className="relative w-full overflow-hidden bg-nepal-navy text-white py-16 md:py-24">
-        {/* red glow + badge texture */}
+      <section className="relative w-full overflow-hidden bg-nepal-red text-white py-16 md:py-24">
+        {/* badge texture only (no gradient) */}
         <div
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "360px", backgroundRepeat: "repeat" }}
         />
-        <div className="absolute -top-1/3 -right-1/4 w-[70%] h-[140%] rounded-full bg-nepal-red/25 blur-[120px] pointer-events-none" />
 
         <div className="container mx-auto max-w-[1300px] px-4 relative z-10">
           <div className="grid lg:grid-cols-2 items-center gap-10 lg:gap-16">
@@ -277,7 +371,7 @@ export default function Home() {
               <motion.img
                 src="/8848-assets/jhol_Momo.png"
                 alt="8848 signature momo"
-                className="w-[78%] max-w-[520px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                className="w-[95%] max-w-[660px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
                 animate={{ y: [0, -16, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -286,7 +380,7 @@ export default function Home() {
                 src={A.everest}
                 alt=""
                 aria-hidden="true"
-                className="absolute -bottom-2 left-2 md:left-8 w-[90px] md:w-[120px] opacity-90 drop-shadow-xl"
+                className="absolute -bottom-2 left-0 md:left-4 w-[95px] md:w-[130px] opacity-90 drop-shadow-xl"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
               />
@@ -311,17 +405,17 @@ export default function Home() {
               <motion.h2 variants={staggerItem} className="mt-6 font-shoem leading-[0.88] tracking-wide">
                 <span className="block text-[54px] md:text-[92px]">WE DON'T JUST</span>
                 <span className="block text-[54px] md:text-[92px]">MAKE MOMO —</span>
-                <span className="block font-anod text-nepal-red text-[46px] md:text-[80px] mt-1">WE PERFECT IT.</span>
+                <span className="block font-anod text-nepal-navy text-[46px] md:text-[80px] mt-1">WE PERFECT IT.</span>
               </motion.h2>
 
               <motion.p variants={staggerItem} className="mt-6 font-poppins text-white/80 text-[15px] md:text-[18px] leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Hand-folded fresh every single morning and inspired by the roof of the world.
+                Crafted fresh every single day and inspired by the roof of the world.
                 Steamed, fried, tossed in chilli or swimming in our legendary jhol — over
-                <span className="text-white font-bold"> 20 mouth-watering fillings</span> crafted to keep you coming back for mo', mo', mo'.
+                <span className="text-white font-bold"> 20 mouth-watering fillings</span> made to keep you coming back for mo', mo', mo'.
               </motion.p>
 
               <motion.div variants={staggerItem} className="mt-7 flex flex-wrap justify-center lg:justify-start gap-3">
-                {["Hand-folded daily", "20+ fillings", "Steamed · Fried · Jhol · Tandoori"].map((f) => (
+                {["Made fresh daily", "20+ fillings", "Steamed · Fried · Jhol · Tandoori"].map((f) => (
                   <span key={f} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[12px] font-semibold tracking-wide text-white/90">
                     {f}
                   </span>
@@ -331,7 +425,7 @@ export default function Home() {
               <motion.div variants={staggerItem} className="mt-9">
                 <Link
                   to="/menu"
-                  className="inline-flex items-center px-[32px] py-[14px] bg-nepal-red text-white font-poppins font-bold text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-xl group"
+                  className="inline-flex items-center px-[32px] py-[14px] bg-white text-nepal-red font-poppins font-bold text-[14px] uppercase tracking-[1px] hover:bg-nepal-navy hover:text-white hover:-translate-y-0.5 transition-all duration-300 shadow-xl group"
                 >
                   Explore Our Food
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -426,7 +520,7 @@ export default function Home() {
           >
             <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-shoem text-nepal-navy leading-[0.9]">{roots.title1}</motion.h2>
             <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-anod text-nepal-red leading-[0.9] mt-1">{roots.title2}</motion.h2>
-            <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-anod text-nepal-navy leading-[0.9] mt-1">LOVED IN THE UK.</motion.h2>
+            <motion.h2 variants={staggerItem} className="text-[34px] md:text-[52px] font-anod text-nepal-navy leading-[0.9] mt-1">COMING SOON TO THE UK.</motion.h2>
 
             <motion.p variants={staggerItem} className="mt-6 font-poppins text-nepal-navy text-[16px] md:text-[18px] font-medium leading-relaxed max-w-xl">
               {roots.lead} {roots.body}
@@ -450,9 +544,9 @@ export default function Home() {
                 style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
               />
               <img
-                src={ownerImg}
-                alt="Founder of 8848 Momo House"
-                className="relative z-10 w-full object-contain drop-shadow-xl rounded-sm"
+                src={FOUNDER_IMG}
+                alt="The team behind 8848 Momo House"
+                className="relative z-10 w-full object-cover aspect-[4/5] object-center drop-shadow-xl rounded-xl"
               />
             </div>
           </Reveal>
@@ -464,14 +558,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <Reveal variant="up" className="flex flex-col md:flex-row justify-between items-end mb-8 pb-4 border-b border-nepal-navy/20">
             <div className="flex items-baseline gap-3">
-              <h2 className="text-[40px] md:text-[60px] font-shoem text-nepal-navy leading-none tracking-wide">STUFF</h2>
-              <span className="text-[40px] md:text-[60px] font-anod text-nepal-red/80 ml-2 transform translate-y-1">&amp; THINGS</span>
+              <h2 className="text-[40px] md:text-[60px] font-shoem text-nepal-navy leading-none tracking-wide">MOMO</h2>
+              <span className="text-[40px] md:text-[60px] font-anod text-nepal-red/80 ml-2 transform translate-y-1">JOURNEY</span>
             </div>
             <Link
               to="/stuff"
               className="hidden md:flex items-center px-[28px] py-[12px] bg-transparent border-2 border-nepal-red text-nepal-red font-poppins font-bold text-[14px] tracking-widest uppercase hover:bg-nepal-red hover:text-white transition-all duration-300 shadow-lg hover:scale-105 mb-2"
             >
-              More Stuff <ArrowRight />
+              View All <ArrowRight />
             </Link>
           </Reveal>
 
@@ -535,14 +629,14 @@ export default function Home() {
           </Reveal>
 
           <div className="flex flex-col gap-4 md:gap-3">
-            <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[350px] w-full">
-              {galleryCards.slice(0, 3).map((card, i) => (
+            <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[340px] w-full">
+              {galleryCards.slice(0, 4).map((card, i) => (
                 <GalleryTile key={i} img={GALLERY[i]} index={i} {...card} />
               ))}
             </div>
-            <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[300px] w-full">
-              {galleryCards.slice(3, 5).map((card, i) => (
-                <GalleryTile key={i} img={GALLERY[i + 3]} index={i} {...card} />
+            <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[320px] w-full">
+              {galleryCards.slice(4, 7).map((card, i) => (
+                <GalleryTile key={i} img={GALLERY[i + 4]} index={i} {...card} />
               ))}
             </div>
           </div>
@@ -630,7 +724,7 @@ function GalleryTile({ img, tag, title, desc, index = 0 }) {
         <img
           src={img}
           alt={title}
-          className="w-full h-full object-cover grayscale-[0.2] transition-all duration-700 md:group-hover:grayscale-0 scale-100"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out md:group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 md:opacity-70 md:group-hover:opacity-30 transition-opacity duration-500" />
       </div>

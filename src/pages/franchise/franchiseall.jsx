@@ -21,6 +21,7 @@ import {
 
 import momosHero from "@/assets/franchise-hero-momos.jpeg"
 import restaurant from "@/assets/restaurant-jak.jpg"
+import restaurant2 from "@/assets/restaurant.jpg"
 import stampJak from "@/assets/stamp-jak.png"
 import storefront from "@/assets/storefront.jpg"
 import {
@@ -196,27 +197,34 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15, ease: [0.215, 0.61, 0.355, 1] }}
         >
-          <div className="relative w-full max-w-[560px] overflow-hidden rounded-[2rem] shadow-2xl lg:absolute lg:bottom-8 lg:right-0 lg:top-12 lg:max-w-[600px]">
+          {/* Clean, framed hero image (no text baked in) */}
+          <div className="relative w-full max-w-[560px] overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-black/5 lg:absolute lg:bottom-8 lg:right-0 lg:top-12 lg:max-w-[600px]">
             <img src={momosHero} alt={t("hero.imageAlt")} className="object-cover w-full h-full" />
-            <div className="absolute px-3 py-1 text-xs tracking-widest text-white rounded-md shadow left-5 top-5 au-nav-font" style={{ background: C.red }}>
-              {t("hero.imageBadge")}
-            </div>
-            <div className="absolute flex items-end justify-between gap-3 bottom-5 left-5 right-5">
-              <div className="text-2xl leading-tight text-white au-display-font drop-shadow-md sm:text-3xl">
-                {t("hero.imageCaptionLine1")}
-                <br />
-                {t("hero.imageCaptionLine2")}
-              </div>
-              <span className="text-3xl italic text-white font-script drop-shadow-md sm:text-4xl">
-                {t("hero.imageCaptionScript")}
-              </span>
-            </div>
           </div>
 
+          {/* Elegant floating stat card */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+            className="absolute -bottom-5 right-3 z-20 flex items-center gap-4 rounded-2xl bg-white/95 px-6 py-4 shadow-2xl ring-1 ring-black/5 backdrop-blur sm:right-6 lg:right-2"
+          >
+            <div>
+              <div className="au-display-font text-[2rem] leading-none" style={{ color: C.red }}>20+</div>
+              <div className="au-copy-sm mt-1 text-xs" style={{ color: C.deepBlue }}>Stores &amp; growing</div>
+            </div>
+            <div className="h-10 w-px" style={{ background: C.border }} />
+            <div>
+              <div className="au-display-font text-[2rem] leading-none" style={{ color: C.navy }}>1st</div>
+              <div className="au-copy-sm mt-1 text-xs" style={{ color: C.deepBlue }}>Nepalese franchise</div>
+            </div>
+          </motion.div>
+
+          {/* Straight stamp logo (no rotation) */}
           <img
             src={stampJak}
             alt={t("hero.stampAlt")}
-            className="absolute -bottom-8 -left-4 z-10 h-32 w-32 rotate-[-10deg] drop-shadow-xl sm:h-44 sm:w-44 lg:-left-8"
+            className="absolute -top-6 -left-2 z-10 h-24 w-24 drop-shadow-xl sm:h-32 sm:w-32 lg:-left-6"
           />
         </motion.div>
       </div>
@@ -504,6 +512,7 @@ function Support() {
 function Investment() {
   const t = useFranchiseT("investment")
   const tiers = t("investment.tiers", { returnObjects: true }) || []
+  const tierImages = [restaurant, storefront, restaurant2]
 
   return (
     <section id="investment" className="py-24" style={{ background: C.navy }}>
@@ -524,39 +533,47 @@ function Investment() {
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}
-              className="relative p-8 transition-all duration-300 rounded-2xl hover:-translate-y-1"
+              className="relative flex flex-col overflow-hidden transition-all duration-300 rounded-2xl hover:-translate-y-1.5 hover:shadow-2xl"
               style={
                 tier.featured
                   ? { background: C.bgWhite, border: `2px solid ${C.red}`, boxShadow: `0 20px 60px rgba(225,29,46,0.25)` }
-                  : { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }
+                  : { background: C.bgWhite, border: `1px solid ${C.border}` }
               }
               {...fadeUp}
               transition={{ duration: 0.6, delay: i * 0.1 }}
             >
-              {tier.featured && (
-                <div className="absolute px-4 py-1 text-xs tracking-widest text-white -translate-x-1/2 rounded-full -top-3 left-1/2 au-nav-font" style={{ background: C.red }}>
-                  {t("investment.featuredBadge")}
-                </div>
-              )}
-
-              <h3 className="au-nav-font text-xl tracking-[0.1em]" style={{ color: tier.featured ? C.navy : "white" }}>
-                {tier.name}
-              </h3>
-              <div className="au-display-font mt-3 text-[clamp(1.6rem,3vw,2.4rem)]" style={{ color: C.red }}>
-                {tier.range}
+              {/* Store-like photo */}
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={tierImages[i % tierImages.length]}
+                  alt={`${tier.name} format`}
+                  loading="lazy"
+                  className="object-cover w-full h-full transition-transform duration-700 hover:scale-105"
+                />
+                <div className="absolute inset-0" style={{ background: "rgba(30,46,92,0.28)" }} />
+                {tier.featured && (
+                  <div className="absolute px-4 py-1 text-xs tracking-widest text-white rounded-full top-4 left-4 au-nav-font" style={{ background: C.red }}>
+                    {t("investment.featuredBadge")}
+                  </div>
+                )}
+                <h3 className="absolute bottom-4 left-5 au-display-font text-2xl uppercase text-white drop-shadow-md">
+                  {tier.name}
+                </h3>
               </div>
-              <p className="au-copy-sm mt-3" style={{ color: tier.featured ? C.deepBlue : "rgba(255,255,255,0.7)" }}>
-                {tier.blurb}
-              </p>
 
-              <ul className="mt-6 space-y-2 text-sm">
-                {(tier.features || []).map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none" style={{ color: C.red }} />
-                    <span style={{ color: tier.featured ? C.deepBlue : "rgba(255,255,255,0.85)" }}>{f}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-col flex-1 p-7">
+                <p className="au-copy-sm" style={{ color: C.deepBlue }}>
+                  {tier.blurb}
+                </p>
+                <ul className="mt-6 space-y-2 text-sm">
+                  {(tier.features || []).map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none" style={{ color: C.red }} />
+                      <span style={{ color: C.deepBlue }}>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -585,22 +602,48 @@ function Process() {
             <br />
             <span className="au-stamp-font" style={{ color: C.red }}>{t("process.titleLine2")}</span>
           </h2>
+          <p className="au-copy mx-auto mt-5 max-w-xl" style={{ color: C.deepBlue }}>
+            Six clear steps from your very first hello to opening day — with our team beside you the whole climb.
+          </p>
         </motion.div>
 
-        <div className="grid gap-6 mt-14 md:grid-cols-2 lg:grid-cols-3">
-          {steps.map((s, i) => (
-            <motion.div
-              key={s.n}
-              className="relative transition-all duration-300 rounded-2xl p-7 hover:-translate-y-1 hover:shadow-lg"
-              style={{ background: C.cardBg, border: `1px solid ${C.border}` }}
-              {...fadeUp}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-            >
-              <div className="text-5xl au-display-font" style={{ color: `${C.red}30` }}>{s.n}</div>
-              <h3 className="au-nav-font mt-2 text-base uppercase tracking-[0.1em]" style={{ color: C.navy }}>{s.t}</h3>
-              <p className="au-copy-sm mt-2" style={{ color: C.deepBlue }}>{s.d}</p>
-            </motion.div>
-          ))}
+        <div className="grid gap-6 mt-16 md:grid-cols-2 lg:grid-cols-3">
+          {steps.map((s, i) => {
+            const StepIcon = [Phone, Users, CheckCircle2, Award, Store, Sparkles][i % 6]
+            return (
+              <motion.div
+                key={s.n}
+                className="group relative rounded-2xl p-7 pt-9 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+                style={{ background: C.bgWhite, border: `1px solid ${C.border}` }}
+                {...fadeUp}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+              >
+                {/* number badge */}
+                <div
+                  className="absolute -top-5 left-7 grid h-12 w-12 place-items-center rounded-full au-display-font text-lg text-white shadow-lg transition-transform duration-300 group-hover:scale-110"
+                  style={{ background: C.red }}
+                >
+                  {s.n}
+                </div>
+                {/* faint icon accent */}
+                <StepIcon className="absolute w-8 h-8 top-6 right-6 opacity-15" style={{ color: C.navy }} />
+
+                <h3 className="au-nav-font mt-3 text-base uppercase tracking-[0.1em]" style={{ color: C.navy }}>{s.t}</h3>
+                <p className="au-copy-sm mt-2" style={{ color: C.deepBlue }}>{s.d}</p>
+
+                {/* progress indicator */}
+                <div className="flex items-center gap-1.5 mt-6">
+                  {steps.map((_, j) => (
+                    <span
+                      key={j}
+                      className="h-1.5 rounded-full transition-all duration-300"
+                      style={{ width: j === i ? 20 : 7, background: j <= i ? C.red : `${C.navy}22` }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

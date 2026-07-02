@@ -15,7 +15,7 @@ const MENU_DATA = [
     items: [
       {
         name: "Steamed Momo",
-        description: "Classic hand-pleated dumplings, soft and pillowy, steamed to perfection.",
+        description: "Classic plump dumplings, soft and pillowy, steamed to perfection.",
         variants: "Veg / Chicken / Pork / Buffalo / Lamb / Cheese & Spinach",
         badges: ["popular", "veg"],
         image: "/menu-images/steamed-momo.jpg",

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { EXTERNAL_LINKS } from "@/lib/links";
 import { staggerParent, staggerItem } from "@/components/Reveal";
 
 export default function ComingSoon({ title = "This Page", blurb }) {
@@ -69,11 +68,11 @@ export default function ComingSoon({ title = "This Page", blurb }) {
                 Back to Home
               </button>
             </Link>
-            <a href={EXTERNAL_LINKS.order} target="_blank" rel="noreferrer">
+            <Link to="/franchise">
               <button className="bg-transparent border-2 border-nepal-blue text-nepal-blue py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-nepal-blue hover:text-white transition-all duration-300 shadow-lg hover:scale-105">
-                Order Online
+                Franchise Inquiry
               </button>
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </section>

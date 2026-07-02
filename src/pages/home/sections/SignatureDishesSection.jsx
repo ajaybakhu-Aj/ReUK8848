@@ -8,7 +8,7 @@ const MotionLink = motion.create(Link);
 const DISHES = [
   {
     name: "Steamed Momo",
-    description: "Soft, hand-pleated dumplings steamed to pillowy perfection.",
+    description: "Soft, pillowy dumplings steamed to perfection.",
     image: "/menu-images/steamed-momo.jpg",
     reviews: "2,400+",
   },

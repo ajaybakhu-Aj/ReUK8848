@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { EXTERNAL_LINKS } from "@/lib/links";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useSiteSettings } from "@/lib/cms";
@@ -131,23 +130,23 @@ export default function Navbar() {
                   ))}
                 </nav>
                 <span className="h-7 w-px bg-nepal-navy/15" />
-                <a href={EXTERNAL_LINKS.order} target="_blank" rel="noreferrer">
+                <Link to="/franchise">
                   <button className="group inline-flex items-center gap-2 bg-nepal-red hover:bg-red-700 text-white pl-5 pr-4 py-2.5 font-poppins font-bold text-[13px] uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 rounded-full">
-                    {t("orderOnline")}
+                    Franchise Inquiry
                     <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </button>
-                </a>
+                </Link>
               </div>
 
               {/* Mobile: order + hamburger */}
               <div className="flex lg:hidden items-center gap-2">
-                <a href={EXTERNAL_LINKS.order} target="_blank" rel="noreferrer" className="hidden sm:block">
+                <Link to="/franchise" className="hidden sm:block">
                   <button className="bg-nepal-red text-white px-4 py-2 font-poppins font-bold text-[12px] uppercase tracking-wide rounded-full shadow-sm">
-                    {t("orderOnline")}
+                    Franchise Inquiry
                   </button>
-                </a>
+                </Link>
                 <button
                   onClick={() => setMobileOpen(true)}
                   aria-label={t("mobile.menu")}
@@ -198,11 +197,11 @@ export default function Navbar() {
           </nav>
 
           <div className="mt-auto px-6 py-8 border-t border-gray-100 bg-gray-50">
-            <a href={EXTERNAL_LINKS.order} target="_blank" rel="noreferrer">
+            <Link to="/franchise" onClick={() => setMobileOpen(false)}>
               <button className="w-full bg-nepal-red text-white py-4 font-poppins font-bold text-lg uppercase tracking-widest shadow-lg mb-8">
-                {t("orderOnline")}
+                Franchise Inquiry
               </button>
-            </a>
+            </Link>
             <div className="flex justify-between items-center">
               <div className="flex space-x-4">
                 {[
