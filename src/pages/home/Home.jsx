@@ -27,6 +27,34 @@ const GALLERY = [
   "/menu-images/mini-butter-chicken-momo.jpg",
 ];
 
+/* Signature momo line-up for the food showcase */
+const SIGNATURE_MOMOS = [
+  {
+    img: "/menu-images/steamed-momo.jpg",
+    name: "Steamed Momo",
+    tag: "The Original",
+    desc: "Delicate, hand-folded parcels steamed to juicy perfection — the classic that started it all.",
+  },
+  {
+    img: "/menu-images/jhol-momo.jpg",
+    name: "Jhol Momo",
+    tag: "Chef's Pick",
+    desc: "Bathed in our soul-warming sesame-tomato jhol broth. Slurp, dip, repeat.",
+  },
+  {
+    img: "/menu-images/tandoori-momo.jpg",
+    name: "Tandoori Momo",
+    tag: "Fired Up",
+    desc: "Char-grilled and marinated in bold Himalayan spices for a smoky, fiery bite.",
+  },
+  {
+    img: "/menu-images/butter-chicken-momo.jpg",
+    name: "Butter Chicken Momo",
+    tag: "Fan Favourite",
+    desc: "Rich, buttery and irresistibly moreish — East-meets-West on one glorious plate.",
+  },
+];
+
 const ArrowRight = ({ className = "w-4 h-4 ml-2" }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m14-7H3" />
@@ -230,6 +258,147 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ==================== MOMO SPOTLIGHT (promo) ==================== */}
+      <section className="relative w-full overflow-hidden bg-nepal-navy text-white py-16 md:py-24">
+        {/* red glow + badge texture */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "360px", backgroundRepeat: "repeat" }}
+        />
+        <div className="absolute -top-1/3 -right-1/4 w-[70%] h-[140%] rounded-full bg-nepal-red/25 blur-[120px] pointer-events-none" />
+
+        <div className="container mx-auto max-w-[1300px] px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 items-center gap-10 lg:gap-16">
+            {/* Image */}
+            <Reveal variant="right" duration={0.8} className="relative order-1 flex justify-center">
+              <motion.img
+                src="/8848-assets/jhol_Momo.png"
+                alt="8848 signature momo"
+                className="w-[78%] max-w-[520px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                animate={{ y: [0, -16, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              {/* rotating stamp badge */}
+              <motion.img
+                src={A.everest}
+                alt=""
+                aria-hidden="true"
+                className="absolute -bottom-2 left-2 md:left-8 w-[90px] md:w-[120px] opacity-90 drop-shadow-xl"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
+              />
+            </Reveal>
+
+            {/* Copy */}
+            <motion.div
+              className="order-2 text-center lg:text-left"
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.span
+                variants={staggerItem}
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-5 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/90"
+              >
+                <span className="h-2 w-2 rounded-full bg-nepal-red" />
+                Kings of Momo
+              </motion.span>
+
+              <motion.h2 variants={staggerItem} className="mt-6 font-shoem leading-[0.88] tracking-wide">
+                <span className="block text-[54px] md:text-[92px]">WE DON'T JUST</span>
+                <span className="block text-[54px] md:text-[92px]">MAKE MOMO —</span>
+                <span className="block font-anod text-nepal-red text-[46px] md:text-[80px] mt-1">WE PERFECT IT.</span>
+              </motion.h2>
+
+              <motion.p variants={staggerItem} className="mt-6 font-poppins text-white/80 text-[15px] md:text-[18px] leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Hand-folded fresh every single morning and inspired by the roof of the world.
+                Steamed, fried, tossed in chilli or swimming in our legendary jhol — over
+                <span className="text-white font-bold"> 20 mouth-watering fillings</span> crafted to keep you coming back for mo', mo', mo'.
+              </motion.p>
+
+              <motion.div variants={staggerItem} className="mt-7 flex flex-wrap justify-center lg:justify-start gap-3">
+                {["Hand-folded daily", "20+ fillings", "Steamed · Fried · Jhol · Tandoori"].map((f) => (
+                  <span key={f} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[12px] font-semibold tracking-wide text-white/90">
+                    {f}
+                  </span>
+                ))}
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="mt-9">
+                <Link
+                  to="/menu"
+                  className="inline-flex items-center px-[32px] py-[14px] bg-nepal-red text-white font-poppins font-bold text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-xl group"
+                >
+                  Explore Our Food
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SIGNATURE MOMO LINE-UP ==================== */}
+      <section className="w-full py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-[#EDF2FF] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <Reveal variant="up" className="text-center mb-12">
+            <p className="font-montserrat text-nepal-red font-bold text-xs md:text-sm tracking-[4px] uppercase mb-3">
+              Pick Your Pleasure
+            </p>
+            <h2 className="font-shoem text-nepal-navy text-[44px] md:text-[72px] leading-none">
+              THE SIGNATURE <span className="font-anod text-nepal-red">MOMO</span> LINE-UP
+            </h2>
+          </Reveal>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {SIGNATURE_MOMOS.map((m) => (
+              <motion.div
+                key={m.name}
+                variants={staggerItem}
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.3, ease: EASE }}
+                className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300"
+              >
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src={m.img}
+                    alt={m.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute top-3 left-3 bg-nepal-red text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                    {m.tag}
+                  </span>
+                </div>
+                <div className="flex flex-col flex-1 p-5 text-left">
+                  <h3 className="font-shoem text-nepal-navy text-2xl md:text-[26px] uppercase tracking-wide leading-none">
+                    {m.name}
+                  </h3>
+                  <p className="mt-3 font-poppins text-[13.5px] leading-relaxed text-nepal-navy/70 flex-1">
+                    {m.desc}
+                  </p>
+                  <Link
+                    to="/menu"
+                    className="mt-4 inline-flex items-center text-nepal-red font-bold font-montserrat text-[11px] uppercase tracking-widest group/link"
+                  >
+                    Order now
+                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover/link:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
