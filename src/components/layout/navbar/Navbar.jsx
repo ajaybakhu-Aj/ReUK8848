@@ -23,7 +23,7 @@ const ALL_NAV = [...LEFT_NAV, ...RIGHT_NAV];
 const normalizePath = (path) => path.replace(/\/+$/, "") || "/";
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation("navbar");
+  const { t } = useTranslation("navbar");
   const settings = useSiteSettings();
   const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,8 +41,6 @@ export default function Navbar() {
   const currentPath = normalizePath(pathname);
 
   const isActive = (item) => item.internal && currentPath === normalizePath(item.href);
-  const lang = (i18n.language || "en").slice(0, 2);
-  const setLang = (l) => i18n.changeLanguage(l);
 
   const linkClass = (item) =>
     [
@@ -109,7 +107,7 @@ export default function Navbar() {
 
         {/* Main nav row — logo left, links + CTA right */}
         <div className={`transition-all duration-300 ${scrolled ? "py-2" : "py-3"}`}>
-          <div className="container mx-auto max-w-[1400px] px-4 md:px-6">
+          <div className="container mx-auto max-w-[1400px] px-4">
             <div className="flex items-center justify-between gap-4">
               {/* Logo (left) */}
               <Link to="/" className="flex items-center shrink-0" aria-label="8848 Momo House — Home">
@@ -220,11 +218,6 @@ export default function Navbar() {
                     {s.icon}
                   </a>
                 ))}
-              </div>
-              <div className="flex items-center space-x-2 font-poppins font-bold">
-                <button onClick={() => setLang("en")} className={lang === "en" ? "text-nepal-red" : "text-gray-400"}>EN</button>
-                <span className="text-gray-300">|</span>
-                <button onClick={() => setLang("de")} className={lang === "de" ? "text-nepal-red" : "text-gray-400"}>DE</button>
               </div>
             </div>
           </div>

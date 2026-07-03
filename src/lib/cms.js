@@ -1,28 +1,7 @@
 import { useEffect, useState } from "react"
+import { resolveApiBaseUrl } from "@/lib/apiConfig"
 
-function normalizeApiUrl(value) {
-  return `${value || ""}`.trim().replace(/\/$/, "")
-}
-
-function getBuildCmsApiUrl() {
-  const buildUrl = normalizeApiUrl(import.meta.env.VITE_CMS_API_URL || import.meta.env.VITE_API_URL)
-  if (!buildUrl) return ""
-
-  const isLocalBackend = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(buildUrl)
-  return import.meta.env.PROD && isLocalBackend ? "" : buildUrl
-}
-
-function getCmsApiUrl() {
-  const runtimeUrl = normalizeApiUrl(window.__8848_CONFIG__?.CMS_API_URL || window.__8848_CONFIG__?.API_URL)
-  if (runtimeUrl) return runtimeUrl
-
-  const buildUrl = getBuildCmsApiUrl()
-  if (buildUrl) return buildUrl
-
-  return window.location.origin
-}
-
-const CMS_API_URL = getCmsApiUrl()
+const CMS_API_URL = resolveApiBaseUrl()
 
 export const DEFAULT_MENU_PAGES = [
   "/8848-assets/8848 uk qsr menu_page-0001.jpg",

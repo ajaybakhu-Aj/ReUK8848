@@ -19,6 +19,7 @@ const A = {
   concrete: "/8848-assets/Concrete-Background.jpg",
   column: "/8848-assets/Column-white-background-grunge.png",
   yak: "/8848-assets/yak-footer.png",
+  heroBg: "/8848-assets/website-hero.svg",
 };
 
 /* Real 8848 Momo House moments — client-supplied hi-res photos (gallery/1–7) */
@@ -126,30 +127,27 @@ export default function Home() {
       {/* ============================ HERO ============================ */}
       <section
         id="home"
-        className="relative w-full min-h-[44vh] md:min-h-[56vh] overflow-hidden pt-[32px] md:pt-[48px] pb-8 bg-[#EDF2FF]"
-        style={{
-          backgroundImage: `url('${A.mountainTop}')`,
-          backgroundPosition: "left top",
-          backgroundRepeat: "no-repeat",
-        }}
+        className="relative w-full min-h-[44vh] md:min-h-[56vh] lg:min-h-[76vh] overflow-hidden pt-[16px] md:pt-[28px] pb-8 bg-[#EDF2FF]"
       >
+        {/* Left inset matches the text/button block's left padding (16px on
+            mobile, 56px from md up) so both share the same left edge.
+            Right-aligned and capped at 1400px: past that width the image
+            hugs the right edge with 0 padding, and the growing leftover
+            space is absorbed on the left only. The left edge itself is
+            mask-faded so it blends into the section's flat backdrop instead
+            of showing a hard rectangular seam. */}
         <div
-          className="absolute inset-0 z-0 opacity-[0.05]"
-          style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "400px", backgroundRepeat: "repeat" }}
-        />
-        <motion.img
-          src={A.homBadge}
-          alt=""
-          aria-hidden="true"
-          className="absolute right-[5%] top-[12%] w-[210px] h-[210px] md:w-[270px] md:h-[270px] z-[5] pointer-events-none opacity-70"
-          initial={{ opacity: 0, scale: 0.85, rotate: -12 }}
-          animate={{ opacity: 0.7, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: EASE }}
+          className="absolute inset-y-0 left-4 md:left-[56px] right-0 ml-auto max-w-[1400px] bg-cover bg-center lg:bg-bottom bg-no-repeat"
+          style={{
+            backgroundImage: `url('${A.heroBg}')`,
+            maskImage: "linear-gradient(to right, transparent, black 72px)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 72px)",
+          }}
         />
 
-        <div className="container mx-auto max-w-[1400px] px-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start pt-2 md:pt-4">
+        <div className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start">
           <motion.div
-            className="w-full lg:w-[55%] flex flex-col items-start text-left"
+            className="w-full lg:w-[55%] flex flex-col items-start text-left mt-[25px]"
             variants={staggerParent}
             initial="hidden"
             animate="show"
@@ -166,26 +164,6 @@ export default function Home() {
             <motion.p variants={staggerItem} className="font-poppins text-[15px] text-[#26367C] leading-[24px] max-w-[480px] mb-6">
               {hero.desc}
             </motion.p>
-            <motion.div variants={staggerItem} className="flex flex-wrap gap-4 mb-5">
-              <Link to="/menu">
-                <button className="bg-nepal-red text-white py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
-                  {hero.ctaMenu}
-                </button>
-              </Link>
-              <Link to="/franchise">
-                <button className="bg-transparent border-2 border-nepal-blue text-nepal-blue py-[12px] px-[28px] font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-nepal-blue hover:text-white transition-all duration-300 shadow-lg hover:scale-105">
-                  Franchise Inquiry
-                </button>
-              </Link>
-            </motion.div>
-            <motion.img
-              variants={staggerItem}
-              src={A.everest}
-              alt="Mount Everest 8848m badge"
-              className="w-[82px] h-auto mt-2 opacity-90"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
           </motion.div>
 
           <div className="hidden lg:flex w-full lg:w-[45%] relative h-[300px] lg:h-[430px] mt-8 lg:mt-0 justify-end">
@@ -205,6 +183,26 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        {/* Anchored to the bottom of the hero section on lg+ screens; sits in
+            normal flow (right after the text) on mobile/tablet. */}
+        <motion.div
+          className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 mt-[26px] md:mt-[74px] flex flex-col items-start gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
+        >
+          <Link to="/menu">
+            <button className="bg-nepal-red text-white py-[12px] px-[28px] rounded-full font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
+              {hero.ctaMenu}
+            </button>
+          </Link>
+          <Link to="/franchise">
+            <button className="bg-white/90 backdrop-blur-sm border-2 border-nepal-blue text-nepal-blue py-[12px] px-[28px] rounded-full font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-nepal-blue hover:text-white transition-all duration-300 shadow-lg hover:scale-105">
+              Franchise Inquiry
+            </button>
+          </Link>
+        </motion.div>
       </section>
 
       {/* ============================ MOMOSTE ============================ */}
@@ -369,9 +367,9 @@ export default function Home() {
             {/* Image */}
             <Reveal variant="right" duration={0.8} className="relative order-1 flex justify-center">
               <motion.img
-                src="/8848-assets/jhol_Momo.png"
-                alt="8848 signature momo"
-                className="w-[95%] max-w-[660px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                src="/menu-images/jhol-momo.jpg"
+                alt="8848 signature jhol momo"
+                className="w-[95%] max-w-[660px] rounded-3xl object-cover shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
                 animate={{ y: [0, -16, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               />

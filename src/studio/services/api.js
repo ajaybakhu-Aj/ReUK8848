@@ -1,29 +1,8 @@
 import axios from "axios"
 import { useAuthStore } from "@/studio/store/authStore"
+import { resolveApiBaseUrl } from "@/lib/apiConfig"
 
-function normalizeApiUrl(value) {
-  return `${value || ""}`.trim().replace(/\/$/, "")
-}
-
-function getBuildApiUrl() {
-  const buildUrl = normalizeApiUrl(import.meta.env.VITE_API_URL || import.meta.env.VITE_CMS_API_URL)
-  if (!buildUrl) return ""
-
-  const isLocalBackend = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(buildUrl)
-  return import.meta.env.PROD && isLocalBackend ? "" : buildUrl
-}
-
-function getRawApiUrl() {
-  const runtimeUrl = normalizeApiUrl(window.__8848_CONFIG__?.API_URL || window.__8848_CONFIG__?.CMS_API_URL)
-  if (runtimeUrl) return runtimeUrl
-
-  const buildUrl = getBuildApiUrl()
-  if (buildUrl) return buildUrl
-
-  return window.location.origin
-}
-
-const rawApiUrl = getRawApiUrl()
+const rawApiUrl = resolveApiBaseUrl()
 const API_URL = rawApiUrl.endsWith("/api") ? rawApiUrl : `${rawApiUrl}/api`
 
 export const api = axios.create({

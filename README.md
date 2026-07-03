@@ -63,14 +63,29 @@ Site content is served from a CMS API and consumed through the hooks in
 `useCurrentMenu`, …). Every hook falls back to the `DEFAULT_*` constants in the
 same file, so the site renders fully even when the API is unavailable.
 
-The CMS endpoint is resolved at runtime from `window.__8848_CONFIG__` in
-[`public/config.js`](public/config.js), which is overridden per environment:
+The CMS endpoint is resolved by [`resolveApiBaseUrl`](src/lib/apiConfig.js), in
+priority order:
+
+1. Runtime config — `window.__8848_CONFIG__` in [`public/config.js`](public/config.js)
+2. Build-time env vars — `VITE_CMS_API_URL` / `VITE_API_URL`
+3. The page's own origin (same-origin fallback)
+
+**Deployment checklist:** `public/config.js` ships with a local-dev default
+(`http://127.0.0.1:4000`). **Before/during deploy, overwrite it with the real
+API URL** for that environment:
 
 ```js
 window.__8848_CONFIG__ = {
   CMS_API_URL: "https://api.example.com",
 }
 ```
+
+If this step is missed, the app does not break silently: a production build
+never trusts a `localhost`/`127.0.0.1` value from either the runtime config or
+the build-time env vars — it logs a `console.warn` and falls back to the next
+source (see `resolveApiBaseUrl`). Every CMS-backed hook still renders its
+`DEFAULT_*` fallback content regardless, so the site never shows a blank page,
+but real content and form submissions won't work until a real URL is set.
 
 ## Routes
 
