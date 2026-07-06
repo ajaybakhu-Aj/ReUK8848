@@ -187,18 +187,18 @@ export default function Home() {
         {/* Anchored to the bottom of the hero section on lg+ screens; sits in
             normal flow (right after the text) on mobile/tablet. */}
         <motion.div
-          className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 mt-[26px] md:mt-[74px] flex flex-col items-start gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
+          className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 mt-[26px] md:mt-[74px] flex flex-wrap items-center gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
         >
-          <Link to="/menu">
-            <button className="bg-nepal-red text-white py-[12px] px-[28px] rounded-full font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
+          <Link to="/menu" className="w-full sm:w-auto">
+            <button className="w-full sm:w-[240px] h-[48px] inline-flex items-center justify-center bg-nepal-red border-2 border-nepal-red text-white rounded-full font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-red-700 hover:border-red-700 hover:-translate-y-0.5 transition-all duration-300 shadow-lg">
               {hero.ctaMenu}
             </button>
           </Link>
-          <Link to="/franchise">
-            <button className="bg-white/90 backdrop-blur-sm border-2 border-nepal-blue text-nepal-blue py-[12px] px-[28px] rounded-full font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-nepal-blue hover:text-white transition-all duration-300 shadow-lg hover:scale-105">
+          <Link to="/franchise" className="w-full sm:w-auto">
+            <button className="w-full sm:w-[240px] h-[48px] inline-flex items-center justify-center bg-white/90 backdrop-blur-sm border-2 border-nepal-blue text-nepal-blue rounded-full font-poppins font-medium text-[14px] uppercase tracking-[1px] hover:bg-nepal-blue hover:text-white hover:-translate-y-0.5 transition-all duration-300 shadow-lg">
               Franchise Inquiry
             </button>
           </Link>
