@@ -135,7 +135,7 @@
     "titleLine2": "8848 JOURNEY.",
     "lead": "Tell us a little about you and the city you would like to open in. Our team will be in touch within 2 working days.",
     "contacts": [
-      { "icon": "Phone", "label": "+44 7700 900123 — Call us", "href": "tel:+447700900123" },
+      { "icon": "Phone", "label": "+44 0000000000 — Call us", "href": "tel:+440000000000" },
       { "icon": "Mail", "label": "info@8848momo.co.uk", "href": "mailto:info@8848momo.co.uk" },
       { "icon": "MapPin", "label": "United Kingdom", "href": "" }
     ],

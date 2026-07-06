@@ -11,8 +11,8 @@
     "city": "United Kingdom",
     "address": "",
     "phoneLabel": "Telefon:",
-    "phoneRaw": "+447700900123",
-    "phoneDisplay": "+44 7700 900123",
+    "phoneRaw": "+440000000000",
+    "phoneDisplay": "+44 0000000000",
     "hoursLabel": "Öffnungszeiten:",
     "hoursValue": "Freitag 11:30–22:00\nSamstag 12:30–22:00\nSonntag 12:30–22:00\nMontag 11:30–22:00\nDienstag 11:30–22:00\nMittwoch 11:30–22:00\nDonnerstag 11:30–22:00"
   }

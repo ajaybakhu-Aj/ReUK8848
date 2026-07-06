@@ -39,7 +39,7 @@ export default function Footer() {
   const siteName = settings.site_name || "8848 Momo House";
   const email = settings.email || "info@8848momo.co.uk";
   const phoneDisplay = settings.phone_display || settings.phone || t("footerLocation.phoneDisplay");
-  const phoneHref = `tel:${(settings.phone || "+447700900123").replace(/\s+/g, "")}`;
+  const phoneHref = `tel:${(settings.phone || "+440000000000").replace(/\s+/g, "")}`;
   const city = settings.city || t("footerLocation.city");
   const address = settings.address || t("footerLocation.address");
   const openingHours = settings.opening_hours || t("footerLocation.hoursValue");

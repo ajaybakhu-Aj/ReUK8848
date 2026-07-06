@@ -366,22 +366,24 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 items-center gap-10 lg:gap-16">
             {/* Image */}
             <Reveal variant="right" duration={0.8} className="relative order-1 flex justify-center">
-              <motion.img
-                src="/menu-images/jhol-momo.jpg"
-                alt="8848 signature jhol momo"
-                className="w-[95%] max-w-[660px] rounded-3xl object-cover shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+              <motion.div
+                className="relative w-[95%] max-w-[660px]"
                 animate={{ y: [0, -16, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              />
-              {/* rotating stamp badge */}
-              <motion.img
-                src={A.everest}
-                alt=""
-                aria-hidden="true"
-                className="absolute -bottom-2 left-0 md:left-4 w-[95px] md:w-[130px] opacity-90 drop-shadow-xl"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
-              />
+              >
+                <img
+                  src="/menu-images/jhol-momo.jpg"
+                  alt="8848 signature jhol momo"
+                  className="w-full rounded-3xl object-cover shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                />
+                {/* static stamp badge pinned to the card corner */}
+                <img
+                  src={A.everest}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute -bottom-7 -left-5 md:-bottom-9 md:-left-7 w-[95px] md:w-[130px] -rotate-12 opacity-95 drop-shadow-xl"
+                />
+              </motion.div>
             </Reveal>
 
             {/* Copy */}

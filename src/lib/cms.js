@@ -25,8 +25,8 @@ export const DEFAULT_NAV_ITEMS = [
 export const DEFAULT_SITE_SETTINGS = {
   site_name: "8848 Momo House",
   logo_url: "",
-  phone: "+447700900123",
-  phone_display: "+44 7700 900123",
+  phone: "+440000000000",
+  phone_display: "+44 0000000000",
   email: "info@8848momo.co.uk",
   city: "United Kingdom",
   address: "",
