@@ -72,7 +72,7 @@ export default function Navbar() {
       >
         {/* Top utility bar */}
         <div className="hidden md:block bg-nepal-blue text-white">
-          <div className="container mx-auto max-w-[1400px] px-4 py-1.5 flex justify-between items-center text-[13px]">
+          <div className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 py-1.5 flex justify-between items-center text-[13px]">
             <div className="flex items-center gap-6">
               <a href={phoneHref} className="flex items-center font-semibold tracking-wide hover:text-white/80 transition-colors">
                 <span className="mr-2">📞</span> {phoneDisplay}
@@ -107,7 +107,7 @@ export default function Navbar() {
 
         {/* Main nav row — logo left, links + CTA right */}
         <div className={`transition-all duration-300 ${scrolled ? "py-2" : "py-3"}`}>
-          <div className="container mx-auto max-w-[1400px] px-4">
+          <div className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4">
             <div className="flex items-center justify-between gap-4">
               {/* Logo (left) */}
               <Link to="/" className="flex items-center shrink-0" aria-label="8848 Momo House — Home">

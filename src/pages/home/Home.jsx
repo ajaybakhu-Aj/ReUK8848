@@ -113,12 +113,12 @@ export default function Home() {
   }, i18n.language);
 
   const galleryCards = [
-    { tag: "GOOD TIMES", title: "Better Together", desc: "Friends, family and momos — the perfect recipe for joy." },
-    { tag: "THE COMMUNITY", title: "Bringing People Together", desc: "Momo lovers united, one plate at a time." },
-    { tag: "THE BUZZ", title: "Always Buzzing", desc: "Late nights, full tables and endless momos." },
+    { tag: "GOOD TIMES", title: "Better Together", desc: "Friends, family and MOMO dishes — the perfect recipe for joy." },
+    { tag: "THE COMMUNITY", title: "Bringing People Together", desc: "MOMO dish lovers united, one plate at a time." },
+    { tag: "THE BUZZ", title: "Always Buzzing", desc: "Late nights, full tables and endless MOMO dishes." },
     { tag: "THE FAMILY", title: "Momoste!", desc: "The smiling faces behind every plate." },
     { tag: "THE VIBE", title: "Come On In", desc: "Cosy nights and unforgettable flavours." },
-    { tag: "OUR HOME", title: "Where It Begins", desc: "Fresh momos, made to order, all day long." },
+    { tag: "OUR HOME", title: "Where It Begins", desc: "Fresh MOMO dishes, made to order, all day long." },
     { tag: "FIND US", title: "Your Local 8848", desc: "A warm welcome on every high street." },
   ];
 
@@ -317,8 +317,10 @@ export default function Home() {
               <motion.h2 variants={staggerItem} className="mt-6 font-shoem leading-[0.9] tracking-wide">
                 <span className="block text-[44px] md:text-[74px]">BRING 8848</span>
                 <span className="block text-[44px] md:text-[74px]">TO YOUR CITY</span>
-                <span className="block font-anod text-nepal-red text-[30px] md:text-[46px] mt-2">
-                  OWN THE FIRST NEPALESE MOMO FRANCHISE
+                <span className="block mt-3">
+                  <span className="inline bg-white text-nepal-red font-anod text-[26px] md:text-[40px] leading-[1.45] px-3 py-1 rounded-md box-decoration-clone shadow-[0_4px_18px_rgba(0,0,0,0.25)]">
+                    OWN THE FIRST NEPALESE MOMO FRANCHISE
+                  </span>
                 </span>
               </motion.h2>
 
