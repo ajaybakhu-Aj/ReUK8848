@@ -538,7 +538,7 @@ export default function Home() {
 
           {/* Image column */}
           <Reveal variant="left" duration={0.8} className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
-            <div className="relative w-full max-w-[360px] lg:max-w-[480px] flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[420px] lg:max-w-[560px] flex justify-center lg:justify-end">
               <div
                 className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0 scale-90"
                 style={{ backgroundImage: `url('${A.homBadge}')`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
@@ -546,7 +546,7 @@ export default function Home() {
               <img
                 src={FOUNDER_IMG}
                 alt="The team behind 8848 Momo House"
-                className="relative z-10 w-full object-cover aspect-[4/5] object-center drop-shadow-xl rounded-xl"
+                className="relative z-10 w-full h-auto drop-shadow-xl rounded-xl"
               />
             </div>
           </Reveal>
