@@ -5,16 +5,19 @@ import { EASE } from "@/components/Reveal";
 
 /* High-quality dish photography shipped with the project. */
 const FILES = [
-  "khaja-platter", "momo-platter", "steamed-momo", "jhol-momo", "tandoori-momo",
+  "feast-spread-1", "feast-spread-2", "feast-spread-3", "feast-spread-4", "feast-spread-5",
+  "momo-trio", "khaja-platter", "momo-platter", "steamed-momo", "veg-steamed-momo",
+  "jhol-momo", "tandoori-momo",
   "crispy-fried-momo", "kothey-pan-fried-momo", "chilli-momo", "green-curry-momo",
   "butter-chicken-momo", "mini-butter-chicken-momo", "golden-carbonara-momo",
-  "chocolate-momo", "kman-doo-wings", "buffalo-jerky", "pork-sekuwa",
-  "hot-smoky-chicken", "chilli-rush", "bao-burger", "loaded-fries", "bowl-of-fries",
-  "nuggets-fries", "sausage-on-stick", "chowmein-noodles", "sweet-tangy-noodles",
-  "fried-rice", "steamed-rice", "chicken-curry-bowl", "butter-chicken-bowl",
-  "goat-curry-bowl", "cottage-cheese-veg-curry", "nepalese-paratha", "himalayan-salad",
-  "edamame-crunch", "coolfi-scoops", "momo-sauce", "mint-chutney", "chilli-garlic-sauce",
-  "szechuan-sauce", "tangy-tomato-sauce",
+  "chocolate-momo", "chocolate-brownie", "kman-doo-wings", "kman-doo-wings-classic",
+  "buffalo-jerky", "pork-sekuwa",
+  "hot-smoky-chicken", "chilli-rush", "sizzzzler", "sherpa-egg-drop-soup",
+  "peanut-sadeko", "bao-burger", "loaded-fries", "bowl-of-fries",
+  "sausage-on-stick", "chowmein-noodles",
+  "fried-rice", "steamed-rice", "chicken-curry-bowl",
+  "goat-curry-bowl", "nepalese-paratha", "himalayan-salad",
+  "edamame-crunch", "coolfi-scoops",
 ];
 
 const titleCase = (slug) =>

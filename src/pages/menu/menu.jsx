@@ -99,6 +99,13 @@ const MENU_DATA = [
         badges: [],
         image: "/menu-images/bao-burger.jpg",
       },
+      {
+        name: "8848 Sizzzzler",
+        description: "A sizzling hot plate of marinated chicken or paneer, wok-tossed with capsicum, onion, and broccoli in our bold house chilli sauce. Served with steamed rice.",
+        variants: "Chicken / Paneer",
+        badges: ["new", "spicy"],
+        image: "/menu-images/sizzzzler.jpg",
+      },
     ],
   },
   {
@@ -156,6 +163,20 @@ const MENU_DATA = [
         variants: "",
         badges: ["veg", "gf"],
         image: "/menu-images/edamame-crunch.jpg",
+      },
+      {
+        name: "Peanut Sadeko",
+        description: "Crunchy roasted peanuts tossed Nepali-style with fresh tomato, red onion, coriander, lime, and Himalayan spices. The perfect zingy street-side snack.",
+        variants: "",
+        badges: ["veg", "gf"],
+        image: "/menu-images/peanut-sadeko.jpg",
+      },
+      {
+        name: "Sherpas' Egg Drop Soup",
+        description: "Steamed momo dumplings floating in a silky, comforting egg drop soup with fresh vegetables. A warming Sherpa favourite from the mountains.",
+        variants: "Veg / Chicken",
+        badges: ["new"],
+        image: "/menu-images/sherpa-egg-drop-soup.jpg",
       },
       {
         name: "8848 Hot & Smoky Chicken",
@@ -281,6 +302,13 @@ const MENU_DATA = [
         variants: "",
         badges: ["popular"],
         image: "/menu-images/chocolate-momo.jpg",
+      },
+      {
+        name: "Chocolate Brownie",
+        description: "Warm, fudgy chocolate brownie topped with velvety vanilla ice cream and a rich chocolate drizzle. The perfect end to your climb.",
+        variants: "",
+        badges: ["new"],
+        image: "/menu-images/chocolate-brownie.jpg",
       },
     ],
   },

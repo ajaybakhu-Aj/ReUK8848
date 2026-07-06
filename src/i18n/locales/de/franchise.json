@@ -251,8 +251,8 @@
     "contacts": [
       {
         "icon": "Phone",
-        "label": "+44 7908 944999 — Ruf uns an",
-        "href": "tel:+447908944999"
+        "label": "+44 7700 900123 — Ruf uns an",
+        "href": "tel:+447700900123"
       },
       {
         "icon": "Mail",

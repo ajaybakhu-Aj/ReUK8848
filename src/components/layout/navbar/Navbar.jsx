@@ -36,8 +36,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const phoneDisplay = settings.phone_display || settings.phone || "+44 7908 944999";
-  const phoneHref = `tel:${(settings.phone || "+447908944999").replace(/\s+/g, "")}`;
+  const phoneDisplay = settings.phone_display || settings.phone || "+44 7700 900123";
+  const phoneHref = `tel:${(settings.phone || "+447700900123").replace(/\s+/g, "")}`;
   const currentPath = normalizePath(pathname);
 
   const isActive = (item) => item.internal && currentPath === normalizePath(item.href);

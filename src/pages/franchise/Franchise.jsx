@@ -174,13 +174,13 @@ export default function Franchise() {
               <h3 className="au-kicker text-[0.78rem]">Contact Information</h3>
               <div className="mt-4 space-y-3">
                 <a
-                  href="tel:+447908944999"
+                  href="tel:+447700900123"
                   className="flex items-center gap-3 text-[0.95rem] font-semibold text-[#21408e] transition-colors hover:text-[#de1d3d]"
                 >
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#21408e]/10">
                     <MdPhone size={18} className="text-[#de1d3d]" />
                   </span>
-                  +44 7908 944999
+                  +44 7700 900123
                 </a>
                 <a
                   href="mailto:info@8848momo.co.uk"
