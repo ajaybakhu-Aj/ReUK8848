@@ -6,7 +6,7 @@ import { EXTERNAL_LINKS } from "@/lib/links";
 import Reveal, { EASE, staggerParent, staggerItem } from "@/components/Reveal";
 import storefrontImg from "@/assets/storefront.jpg";
 
-const FOUNDER_IMG = "/gallery/6.jpg";
+const FOUNDER_IMG = "/gallery/rajesh-hamal.jpeg";
 
 /* Asset paths (project's own images) */
 const A = {
