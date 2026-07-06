@@ -113,12 +113,12 @@ export default function Home() {
   }, i18n.language);
 
   const galleryCards = [
-    { tag: "GOOD TIMES", title: "Better Together", desc: "Friends, family and MOMO dishes — the perfect recipe for joy." },
-    { tag: "THE COMMUNITY", title: "Bringing People Together", desc: "MOMO dish lovers united, one plate at a time." },
-    { tag: "THE BUZZ", title: "Always Buzzing", desc: "Late nights, full tables and endless MOMO dishes." },
+    { tag: "GOOD TIMES", title: "Better Together", desc: "Friends, family and MOMO eish — the perfect recipe for joy." },
+    { tag: "THE COMMUNITY", title: "Bringing People Together", desc: "MOMO eish lovers united, one plate at a time." },
+    { tag: "THE BUZZ", title: "Always Buzzing", desc: "Late nights, full tables and endless MOMO eish." },
     { tag: "THE FAMILY", title: "Momoste!", desc: "The smiling faces behind every plate." },
     { tag: "THE VIBE", title: "Come On In", desc: "Cosy nights and unforgettable flavours." },
-    { tag: "OUR HOME", title: "Where It Begins", desc: "Fresh MOMO dishes, made to order, all day long." },
+    { tag: "OUR HOME", title: "Where It Begins", desc: "Fresh MOMO eish, made to order, all day long." },
     { tag: "FIND US", title: "Your Local 8848", desc: "A warm welcome on every high street." },
   ];
 
