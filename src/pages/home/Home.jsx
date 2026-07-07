@@ -137,7 +137,7 @@ export default function Home() {
             mask-faded so it blends into the section's flat backdrop instead
             of showing a hard rectangular seam. */}
         <div
-          className="absolute inset-y-0 left-4 md:left-[56px] right-0 ml-auto max-w-[1400px] bg-cover bg-center lg:bg-bottom bg-no-repeat"
+          className="absolute inset-y-0 left-4 md:left-[56px] right-4 md:right-[56px] ml-auto max-w-[1400px] bg-cover bg-center lg:bg-bottom bg-no-repeat rounded-2xl"
           style={{
             backgroundImage: `url('${A.heroBg}')`,
             maskImage: "linear-gradient(to right, transparent, black 72px)",
@@ -145,7 +145,7 @@ export default function Home() {
           }}
         />
 
-        <div className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start">
+        <div className="container mx-auto max-w-[1400px] px-4 md:px-[56px] relative z-10 flex flex-col lg:flex-row items-center lg:items-start">
           <motion.div
             className="w-full lg:w-[55%] flex flex-col items-start text-left mt-[25px]"
             variants={staggerParent}
@@ -187,7 +187,7 @@ export default function Home() {
         {/* Anchored to the bottom of the hero section on lg+ screens; sits in
             normal flow (right after the text) on mobile/tablet. */}
         <motion.div
-          className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 mt-[26px] md:mt-[74px] flex flex-wrap items-center gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
+          className="container mx-auto max-w-[1400px] px-4 md:px-[56px] relative z-10 mt-[26px] md:mt-[74px] flex flex-wrap items-center gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
