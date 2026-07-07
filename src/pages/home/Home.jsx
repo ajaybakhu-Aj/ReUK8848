@@ -145,7 +145,7 @@ export default function Home() {
           }}
         />
 
-        <div className="container mx-auto max-w-[1400px] px-4 md:px-[56px] relative z-10 flex flex-col lg:flex-row items-center lg:items-start">
+        <div className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 flex flex-col lg:flex-row items-center lg:items-start">
           <motion.div
             className="w-full lg:w-[55%] flex flex-col items-start text-left mt-[25px]"
             variants={staggerParent}
@@ -187,7 +187,7 @@ export default function Home() {
         {/* Anchored to the bottom of the hero section on lg+ screens; sits in
             normal flow (right after the text) on mobile/tablet. */}
         <motion.div
-          className="container mx-auto max-w-[1400px] px-4 md:px-[56px] relative z-10 mt-[26px] md:mt-[74px] flex flex-wrap items-center gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
+          className="container mx-auto max-w-[1400px] pl-4 md:pl-[56px] pr-4 relative z-10 mt-[26px] md:mt-[74px] flex flex-wrap items-center gap-4 lg:absolute lg:inset-x-0 lg:bottom-[20px] lg:mt-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
@@ -586,7 +586,7 @@ export default function Home() {
                 transition={{ duration: 0.3, ease: EASE }}
                 className="flex flex-col bg-white rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300"
               >
-                <Link 
+                <Link
                   to="/stuff"
                   className="flex flex-col group cursor-pointer h-full"
                 >
@@ -635,7 +635,12 @@ export default function Home() {
           </Reveal>
 
           <div className="flex flex-col gap-4 md:gap-3">
-            <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[340px] w-full">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:h-[3403333333332
+            .
+            
+            
+            
+            3.3333333333333333333333333.px] w-full">
               {galleryCards.slice(0, 4).map((card, i) => (
                 <GalleryTile key={i} img={GALLERY[i]} index={i} {...card} />
               ))}
