@@ -137,7 +137,7 @@ export default function Home() {
             mask-faded so it blends into the section's flat backdrop instead
             of showing a hard rectangular seam. */}
         <div
-          className="absolute inset-y-0 left-4 md:left-[56px] right-4 md:right-[56px] ml-auto max-w-[1400px] bg-cover bg-center lg:bg-bottom bg-no-repeat"
+          className="absolute inset-y-0 left-4 md:left-[56px] right-0 ml-auto max-w-[1400px] bg-cover bg-center lg:bg-bottom bg-no-repeat"
           style={{
             backgroundImage: `url('${A.heroBg}')`,
             maskImage: "linear-gradient(to right, transparent, black 72px)",
