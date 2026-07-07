@@ -626,7 +626,12 @@ export default function Home() {
                 Our Journey • Our Passion • Laughter &amp; Love
               </p>
             </div>
-
+            <Link
+              to="/gallery"
+              className="mt-6 md:mt-0 flex items-center px-[28px] py-[12px] bg-transparent border-2 border-nepal-red text-nepal-red font-poppins font-bold text-[14px] tracking-widest uppercase hover:bg-nepal-red hover:text-white transition-all duration-300 shadow-lg hover:scale-105 mb-2 mx-auto md:mx-0"
+            >
+              View Gallery <ArrowRight />
+            </Link>
           </Reveal>
 
           <div className="flex flex-col gap-4 md:gap-3">
