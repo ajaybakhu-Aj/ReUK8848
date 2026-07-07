@@ -579,34 +579,38 @@ export default function Home() {
             viewport={{ once: true, amount: 0.15 }}
           >
             {posts.map((post, i) => (
-              <motion.a
+              <motion.div
                 key={post.key || i}
                 variants={staggerItem}
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3, ease: EASE }}
-                href={post.href || "#"}
-                className="flex flex-col group cursor-pointer bg-white rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300"
+                className="flex flex-col bg-white rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300"
               >
-                <div className="w-full aspect-[3/2] overflow-hidden relative">
-                  <img
-                    src={post.img}
-                    alt={post.title}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-nepal-navy/10 group-hover:bg-transparent transition-colors duration-300" />
-                </div>
-                <div className="flex flex-col items-start text-left p-6">
-                  <h3 className="text-[22px] font-montserrat font-bold text-nepal-navy mb-3 leading-tight group-hover:opacity-80 transition-opacity">
-                    {post.title}
-                  </h3>
-                  <p className="text-nepal-navy/80 font-poppins text-[15px] leading-relaxed mb-6 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <span className="text-nepal-red font-bold font-montserrat text-xs uppercase tracking-widest border-b-2 border-transparent group-hover:border-nepal-red transition-all duration-300">
-                    {(updates.readMore || "Read more").toUpperCase()}
-                  </span>
-                </div>
-              </motion.a>
+                <Link 
+                  to="/stuff"
+                  className="flex flex-col group cursor-pointer h-full"
+                >
+                  <div className="w-full aspect-[3/2] overflow-hidden relative">
+                    <img
+                      src={post.img}
+                      alt={post.title}
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-nepal-navy/10 group-hover:bg-transparent transition-colors duration-300" />
+                  </div>
+                  <div className="flex flex-col items-start text-left p-6 flex-1">
+                    <h3 className="text-[22px] font-montserrat font-bold text-nepal-navy mb-3 leading-tight group-hover:opacity-80 transition-opacity">
+                      {post.title}
+                    </h3>
+                    <p className="text-nepal-navy/80 font-poppins text-[15px] leading-relaxed mb-6 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <span className="text-nepal-red font-bold font-montserrat text-xs uppercase tracking-widest border-b-2 border-transparent group-hover:border-nepal-red transition-all duration-300 mt-auto">
+                      {(updates.readMore || "Read more").toUpperCase()}
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -622,12 +626,7 @@ export default function Home() {
                 Our Journey • Our Passion • Laughter &amp; Love
               </p>
             </div>
-            <Link
-              to="/gallery"
-              className="hidden md:flex items-center px-[28px] py-[12px] bg-transparent border-2 border-nepal-red text-nepal-red font-poppins font-bold text-[14px] tracking-widest uppercase hover:bg-nepal-red hover:text-white transition-all duration-300 shadow-lg hover:scale-105 mb-2"
-            >
-              View Gallery <ArrowRight />
-            </Link>
+
           </Reveal>
 
           <div className="flex flex-col gap-4 md:gap-3">
@@ -643,14 +642,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center mt-8 md:hidden">
-            <Link
-              to="/gallery"
-              className="flex items-center px-[28px] py-[12px] bg-transparent border-2 border-nepal-red text-nepal-red font-poppins font-bold text-[14px] tracking-widest uppercase hover:bg-nepal-red hover:text-white transition-all duration-300 shadow-lg"
-            >
-              Full Gallery
-            </Link>
-          </div>
         </div>
       </section>
 
